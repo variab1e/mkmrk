@@ -1,16 +1,35 @@
 {
-  "name": "mkmrk",
-  "version": "0.0.3",
-  "description": "markets analysis",
-  "homepage": "https://github.com/variab1e/mkmrk",
-  "url": "https://github.com/variab1e/mkmrk/issues",
-  "email": "eric@hiller.pro",
-  "directories": {
-    "lib": "./app",
-    "doc": "./docs"
+  "name": "electron-qs-edh",
+  "version": "4548.2016.05.25.06.29.001",
+  "description": "TEST EH1 Electron application",
+  "main": "main.js",
+  "scripts": {
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "electron main.js",
+    "qdist-win32-x64": "npm run build && electron-packager . --out=dist --platform=win32 --arch=x64 --overwrite",
+    "qdist-all": "npm run build && electron-packager . --out=dist --platform=all --arch=all --overwrite"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/variab1e/mkmrk.git"
+    "url": "git+TODO"
+  },
+  "keywords": [
+    "TODO",
+    "QQQ"
+  ],
+  "author": "Eric D Hiller",
+  "license": "MIT",
+  "bugs": {
+    "url": "TODO/issues"
+  },
+  "homepage": "TODO#readme",
+  "devDependencies": {
+    "electron-packager": "^7.0.2",
+    "electron-prebuilt": "^1.0.1",
+    "sql.js": "*"
+  },
+  "dependencies": {
+    "sql.js": "^0.3.2"
   }
 }

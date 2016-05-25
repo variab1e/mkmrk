@@ -1,9 +1,16 @@
 {
-	"compilerOptions": {
-		"experimentalDecorators": true,
-		"emitDecoratorMetadata": true,
-		"module": "es6",
-		"moduleResolution": "node",
-		"target": "es2015"
-	}
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+	"moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "noImplicitAny": false
+  },
+  "exclude": [
+    "node_modules",
+    "typings"
+  ]
 }
