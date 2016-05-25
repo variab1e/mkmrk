@@ -1,7 +1,7 @@
 {
-  "name": "electron-qs-edh",
+  "name": "mkmrk",
   "version": "4548.2016.05.25.06.29.001",
-  "description": "TEST EH1 Electron application",
+  "description": "Financial Analysis",
   "main": "main.js",
   "scripts": {
     "build": "tsc",
@@ -12,22 +12,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+TODO"
+    "url": "https://github.com/variab1e/mkmrk"
   },
   "keywords": [
-    "TODO",
-    "QQQ"
+    "mkmrk",
+    "finance"
   ],
   "author": "Eric D Hiller",
   "license": "MIT",
   "bugs": {
-    "url": "TODO/issues"
+    "url": "https://github.com/variab1e/mkmrk/issues"
   },
-  "homepage": "TODO#readme",
+  "homepage": "https://github.com/variab1e/mkmrk#readme",
   "devDependencies": {
     "electron-packager": "^7.0.2",
-    "electron-prebuilt": "^1.0.1",
-    "sql.js": "*"
+    "electron-prebuilt": "^1.0.1"
   },
   "dependencies": {
     "sql.js": "^0.3.2"
