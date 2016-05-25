@@ -1,0 +1,16 @@
+{
+  "name": "mkmrk",
+  "version": "0.0.3",
+  "description": "markets analysis",
+  "homepage": "https://github.com/variab1e/mkmrk",
+  "url": "https://github.com/variab1e/mkmrk/issues",
+  "email": "eric@hiller.pro",
+  "directories": {
+    "lib": "./app",
+    "doc": "./docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/variab1e/mkmrk.git"
+  }
+}
