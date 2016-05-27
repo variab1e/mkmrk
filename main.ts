@@ -5,13 +5,19 @@ let dialog = electron.dialog;
 let BrowserWindow = electron.BrowserWindow;
 let Menu = electron.Menu;
 
-import sql = require('sql.js');
+let dbname: string = "f.db";
 
-let db = new sql.Database();
+import fs = require('fs');
+import sql = require('sql.js');
+import path = require('path')
+
+let db = new sql.Database(fs.readFileSync(path.join(__dirname, dbname)));
 let sqlstr: string = "CREATE TABLE hello (a int, b char);";
 sqlstr += "INSERT INTO hello VALUES (0, 'hello');";
 sqlstr += "INSERT INTO hello VALUES (1, 'world');";
 db.run(sqlstr);
+fs.writeFileSync(dbname, new Buffer(db.export()));
+
 
 
 // Global reference to the main window, so the garbage collector doesn't close it.
