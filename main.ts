@@ -1,31 +1,15 @@
-/// <reference path="typings/index.d.ts" />
 import electron = require("electron");
 let app = electron.app;
 let dialog = electron.dialog;
 let BrowserWindow = electron.BrowserWindow;
 let Menu = electron.Menu;
 
-let dbname: string = "f.db";
-
-import fs = require('fs');
-import sql = require('sql.js');
-import path = require('path')
-
-let db = new sql.Database(fs.readFileSync(path.join(__dirname, dbname)));
-let sqlstr: string = "CREATE TABLE hello (a int, b char);";
-sqlstr += "INSERT INTO hello VALUES (0, 'hello');";
-sqlstr += "INSERT INTO hello VALUES (1, 'world');";
-db.run(sqlstr);
-fs.writeFileSync(dbname, new Buffer(db.export()));
-
-
-
 // Global reference to the main window, so the garbage collector doesn't close it.
-let mainWindow : Electron.BrowserWindow;
+let mainWindow: Electron.BrowserWindow;
 
 // Opens the main window, with a native menu bar.
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({ width: 800, height: 600 });
 
   let template = [
     {
@@ -37,12 +21,18 @@ function createWindow() {
             let filenames = dialog.showOpenDialog({
               properties: ["openFile"],
               filters: [
-                {name: "All Media", extensions: ["jpg", "gif", "png", "mpg", "mpeg", "mp4"]},
-                {name: "Images", extensions: ["jpg", "gif", "png"]},
-                {name: "Videos", extensions: ["mpg", "mpeg", "mp4"]}
+                { name: "All Media", extensions: ["jpg", "gif", "png", "mpg", "mpeg", "mp4"] },
+                { name: "Images", extensions: ["jpg", "gif", "png"] },
+                { name: "Videos", extensions: ["mpg", "mpeg", "mp4"] }
               ]
             });
             if (filenames && filenames[0]) mainWindow.webContents.send("load-file", filenames[0]);
+          }
+        },
+        {
+          label: "Draw Symbol YHOO",
+          click: () => {
+            mainWindow.webContents.send("draw_symbol", "YHOO");
           }
         },
         {
@@ -54,11 +44,12 @@ function createWindow() {
       ]
     }
   ];
-  let menu : Electron.Menu = Menu.buildFromTemplate(template);
+  let menu: Electron.Menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
 
   mainWindow.loadURL(`file://${__dirname}/index.html`);
   // mainWindow.webContents.openDevTools();
+
 
   mainWindow.on("closed", () => {
     mainWindow = null;

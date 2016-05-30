@@ -1,8 +1,11 @@
-/// <reference path="typings/index.d.ts" />
 import electron = require("electron");
+import { Security } from './security';
 let ipcRenderer = electron.ipcRenderer;
-let fs = require("fs");
-let path = require("path");
+let fs          = require("fs");
+let path        = require("path");
+
+let Plottable   = require("Plottable");
+
 
 // All supported files (full absolute paths) in the same directory as the last file explicitly opened
 // by the user.  The explicitly-opened file will be at index position 0 in the array.  "currentIndex"
@@ -20,6 +23,18 @@ ipcRenderer.on("load-file", (event, arg) => {
   loadFile(arg);
 });
 
+ipcRenderer.on("draw_symbol", (event, arg) => {
+  //now lets test the security bit
+  console.log("looking up security now!");
+  var stock = new Security('YHOO');
+  stock.getHistory("2016-01-14","2016-01-15")
+	.then(json => console.log(json))
+	.catch(reason => console.log("ERROR:" + reason))
+
+  makeBasicChart();
+});
+
+
 // Handle files drag-n-dropped onto the browser window, so that Electron doesn't leave the page and
 // load that file natively instead.
 document.ondragover = document.ondrop = (event) => {
@@ -34,14 +49,14 @@ document.body.ondrop = (event) => {
 window.onkeydown = (event) => {
   event.preventDefault();
   if (!filepaths || !filepaths.length) {
-    return;
+	return;
   }
   if (event.keyCode == 39 || event.keyCode == 40) {
-    // Navigate forward through the gallery upon right-arrow or down-arrow keypress
-    currentIndex = (currentIndex + 1 >= filepaths.length) ? 0 : currentIndex + 1;
+	// Navigate forward through the gallery upon right-arrow or down-arrow keypress
+	currentIndex = (currentIndex + 1 >= filepaths.length) ? 0 : currentIndex + 1;
   } else if (event.keyCode == 37 || event.keyCode == 38) {
-    // Navigate backward through the gallery upon left-arrow or up-arrow keypress
-    currentIndex = (currentIndex == 0) ? filepaths.length - 1 : currentIndex - 1;
+	// Navigate backward through the gallery upon left-arrow or up-arrow keypress
+	currentIndex = (currentIndex == 0) ? filepaths.length - 1 : currentIndex - 1;
   }
   // console.log(`Loading media at index position ${currentIndex}, ${filepaths[currentIndex].toString()}`);
   renderCurrentFile();
@@ -50,11 +65,50 @@ window.onkeydown = (event) => {
 // TODO: Document
 window.onresize = (event) => {
   if (document.getElementById("image")) {
-    resizeImage();
+	resizeImage();
   } else if (document.getElementById("video")) {
-    resizeVideo();
+	resizeVideo();
   }
 };
+
+function makeBasicChart() {
+  alert('here')
+  let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  //let svgNS = svg.namespaceURI;
+  svg.id = "tutorial-result";
+  document.body.appendChild(svg);
+
+	var xScale = new Plottable.Scales.Linear();
+	var yScale = new Plottable.Scales.Linear();
+
+	var xAxis = new Plottable.Axes.Numeric(xScale, "bottom");
+	var yAxis = new Plottable.Axes.Numeric(yScale, "left");
+
+	var plot = new Plottable.Plots.Line();
+	plot.x(function(d) { return d.x; }, xScale);
+	plot.y(function(d) { return d.y; }, yScale);
+
+	var data = [
+	  { "x": 0, "y": 1 },
+	  { "x": 1, "y": 2 },
+	  { "x": 2, "y": 4 },
+	  { "x": 3, "y": 8 }
+	];
+
+	var dataset = new Plottable.Dataset(data);
+	plot.addDataset(dataset);
+
+	var chart = new Plottable.Components.Table([
+	  [yAxis, plot],
+	  [null, xAxis]
+	]);
+
+    chart.renderTo("svg#tutorial-result");
+
+	//chart.renderTo("svg#example");
+  
+  }
+
 
 // Implement a load file event, from either the main process or the renderer process.  Validate the selected 
 // file, then find all supported files in the same directory.  Results will be stored in the top-level "filepaths" 
@@ -64,43 +118,43 @@ function loadFile(filepath : string) {
   if (!filepath) return;
 
   fs.stat(filepath, (err, stats) => {
-    // Validate 
-    if (err) {
-      console.log(err);
-      return;
-    }
-    if (!stats.isFile()) {
-      console.log(`${filepath} cannot be opened`);
-      return;
-    }
-    let supportedExtensions = [".jpg", ".gif", ".png", ".mpg", ".mpeg", ".mp4"];
-    let ext = path.extname(filepath).toLowerCase();
-    if (supportedExtensions.indexOf(ext) === -1) {
-      console.log(`${filepath} is not a supported file type`);
-      return;
-    }
+	// Validate 
+	if (err) {
+	  console.log(err);
+	  return;
+	}
+	if (!stats.isFile()) {
+	  console.log(`${filepath} cannot be opened`);
+	  return;
+	}
+	let supportedExtensions = [".jpg", ".gif", ".png", ".mpg", ".mpeg", ".mp4"];
+	let ext = path.extname(filepath).toLowerCase();
+	if (supportedExtensions.indexOf(ext) === -1) {
+	  console.log(`${filepath} is not a supported file type`);
+	  return;
+	}
 
-    // Find all supported files
-    let allFiles : string[] = [];
-    allFiles.push(filepath);
-    let dirname = path.dirname(filepath);
-    fs.readdir(dirname, (err, files : string[]) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      for (let file of files) {
-        let ext = path.extname(file).toLowerCase();
-        if (supportedExtensions.indexOf(ext) === -1) continue;
-        let fullPath = path.join(dirname, file);
-        if (allFiles.indexOf(fullPath) === -1) {
-          allFiles.push(fullPath);
-        }
-      }
-      filepaths = allFiles.slice(0);
-      currentIndex = 0;
-      renderCurrentFile();
-    })
+	// Find all supported files
+	let allFiles : string[] = [];
+	allFiles.push(filepath);
+	let dirname = path.dirname(filepath);
+	fs.readdir(dirname, (err, files : string[]) => {
+	  if (err) {
+		console.log(err);
+		return;
+	  }
+	  for (let file of files) {
+		let ext = path.extname(file).toLowerCase();
+		if (supportedExtensions.indexOf(ext) === -1) continue;
+		let fullPath = path.join(dirname, file);
+		if (allFiles.indexOf(fullPath) === -1) {
+		  allFiles.push(fullPath);
+		}
+	  }
+	  filepaths = allFiles.slice(0);
+	  currentIndex = 0;
+	  renderCurrentFile();
+	})
   });
 }
 
@@ -109,14 +163,14 @@ function loadFile(filepath : string) {
 // or by the arrow key event handler when the user cycles through the gallery with arrow keys.
 function renderCurrentFile() {
   if (!filepaths || !filepaths.length) {
-    return;
+	return;
   }
   let currentFile = filepaths[currentIndex];
   let ext = path.extname(currentFile).toLowerCase();
   if ([".jpg", ".gif", ".png"].indexOf(ext) != -1) {
-    renderImage(currentFile);
+	renderImage(currentFile);
   } else if ([".mpg", ".mpeg", ".mp4"].indexOf(ext) != -1) {
-    renderVideo(currentFile);
+	renderVideo(currentFile);
   }
   let statusSpan : HTMLSpanElement = document.getElementById("status");
   statusSpan.innerHTML = `${currentIndex + 1} / ${filepaths.length}`;
@@ -148,9 +202,9 @@ function resizeImage() {
   let image : HTMLImageElement = <HTMLImageElement> document.getElementById("image");
   image.style.width = image.style.height = null;
   if (image.naturalWidth / contentDiv.clientWidth > image.naturalHeight / contentDiv.clientHeight) {
-    image.style.width = "100%";
+	image.style.width = "100%";
   } else {
-    image.style.height = "100%";
+	image.style.height = "100%";
   }
 }
 
@@ -160,8 +214,8 @@ function resizeVideo() {
   let video : HTMLVideoElement = <HTMLVideoElement> document.getElementById("video");
   video.style.width = video.style.height = null;
   if (video.videoWidth / contentDiv.clientWidth > video.videoHeight / contentDiv.clientHeight) {
-    video.style.width = "100%";
+	video.style.width = "100%";
   } else {
-    video.style.height = "100%";
+	video.style.height = "100%";
   }
 }

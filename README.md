@@ -57,11 +57,23 @@ https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
 
 - [file structure best practices](https://github.com/typings/discussions/issues/15)
 
-# sql tries
+- [typings installation](https://github.com/typings/typings/blob/master/docs/faq.md#where-do-the-type-definitions-install)
+
+# SQLite3
+
+## Fundamentals
+
+[data types](https://www.sqlite.org/datatype3.html)
+* data types are **NOT** static, the column's data type is merely a suggestion
+* 
+
+## js & typescript sql libraries
 
 * [sql.js](https://github.com/kripken/sql.js/)
 * sqlite ( aka [node-sqlite](https://github.com/kriasoft/node-sqlite) )
-* sqlite3
+* [sqlite3](https://github.com/mapbox/node-sqlite3#installing)
+    - [node and sqlite3](http://blog.modulus.io/nodejs-and-sqlite)
+    - 
 
 # GUI frameworks
 
@@ -73,6 +85,10 @@ https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
 http://plottablejs.org/examples/finance/
 
 # Queries
+
+[Yahoo Finance API Question on StackOverflow](http://stackoverflow.com/questions/5108399/yahoo-finance-all-currencies-quote-api-documentation)
+
+[Project written using python](https://github.com/lukaszbanasiak/yahoo-finance/blob/master/yahoo_finance/__init__.py)
 
 ```
 
@@ -104,3 +120,8 @@ https://github.com/lukaszbanasiak/yahoo-finance/blob/master/yahoo_finance/__init
 
 ```
 
+# Async Functions
+
+_awesome_
+
+<https://templecoding.com/blog/2016/02/17/async-await-with-es6-babel-and-typescript/>

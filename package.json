@@ -8,7 +8,8 @@
     "prestart": "npm run build",
     "start": "electron main.js",
     "qdist-win32-x64": "npm run build && electron-packager . --out=dist --platform=win32 --arch=x64 --overwrite",
-    "qdist-all": "npm run build && electron-packager . --out=dist --platform=all --arch=all --overwrite"
+    "qdist-all": "npm run build && electron-packager . --out=dist --platform=all --arch=all --overwrite",
+    "prepublish": "typings install && npm run build"
   },
   "repository": {
     "type": "git",
@@ -26,9 +27,15 @@
   "homepage": "https://github.com/variab1e/mkmrk#readme",
   "devDependencies": {
     "electron-packager": "^7.0.2",
-    "electron-prebuilt": "^1.0.1"
+    "electron-prebuilt": "^1.0.1",
+    "tslint": "^3.10.2",
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4"
   },
   "dependencies": {
+    "es6-promise": "^3.2.1",
+    "isomorphic-fetch": "^2.2.1",
+    "plottable": "^2.2.0",
     "sql.js": "^0.3.2"
   }
 }
