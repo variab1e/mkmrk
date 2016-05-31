@@ -90,6 +90,14 @@ http://plottablejs.org/examples/finance/
 
 [Project written using python](https://github.com/lukaszbanasiak/yahoo-finance/blob/master/yahoo_finance/__init__.py)
 
+## Further Reading-
+
+https://developer.yahoo.com/yql/console/?q=select%20*%20from%20csv%20where%20url%3D%27http%3A%2F%2Fdownload.finance.yahoo.com%2Fd%2Fquotes.csv%3Fs%3DYHOO%2CGOOG%2CAAPL%26f%3Dsl1d1t1c1ohgv%26e%3D.csv%27%20and%20columns%3D%27symbol%2Cprice%2Cdate%2Ctime%2Cchange%2Ccol1%2Chigh%2Clow%2Ccol2%27
+
+http://www.yqlblog.net/blog/2009/06/02/getting-stock-information-with-yql-and-open-data-tables/
+
+
+
 ```
 
 http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20IN%20(%22YHOO%22,%22AAPL%22)&format=json&env=http://datatables.org/alltables.env
