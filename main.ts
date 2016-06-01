@@ -13,24 +13,22 @@ function createWindow() {
 
   let template = [
     {
-      label: "File",
+      label: "Draw Symbol",
       submenu: [
         {
-          label: "Open",
+          label: "YHOO",
           click: () => {
-            let filenames = dialog.showOpenDialog({
-              properties: ["openFile"],
-              filters: [
-                { name: "All Media", extensions: ["jpg", "gif", "png", "mpg", "mpeg", "mp4"] },
-                { name: "Images", extensions: ["jpg", "gif", "png"] },
-                { name: "Videos", extensions: ["mpg", "mpeg", "mp4"] }
-              ]
-            });
-            if (filenames && filenames[0]) mainWindow.webContents.send("load-file", filenames[0]);
+            mainWindow.webContents.send("draw_symbol", "YHOO");
           }
         },
         {
-          label: "Draw Symbol YHOO",
+          label: "CSCO",
+          click: () => {
+            mainWindow.webContents.send("draw_symbol", "CSCO");
+          }
+        },
+        {
+          label: "Foo",
           click: () => {
             mainWindow.webContents.send("draw_symbol", "YHOO");
           }
@@ -48,7 +46,7 @@ function createWindow() {
   Menu.setApplicationMenu(menu);
 
   mainWindow.loadURL(`file://${__dirname}/index.html`);
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
 
   mainWindow.on("closed", () => {

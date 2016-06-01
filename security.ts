@@ -3,9 +3,20 @@ import fs 		= require('fs');
 import sql 		= require('sql.js');
 import path 	= require('path')
 
+interface dayRecord {
+	date: string;
+	open: number;
+	high: number;
+	low: number;
+	close: number;
+	volume: number;
+	adj_close: number;
+}
+
 export class Security {
 
 	private db;
+	private history: dayRecord[];
 	
 	constructor(
 		private symbol: string,
@@ -15,19 +26,20 @@ export class Security {
 		this.db = new sql.Database(fs.readFileSync(path.join(__dirname, this.dbname)));
 		// date stored as ISO 8601
 		this.writeSql("CREATE TABLE IF NOT EXISTS " + this.symbol + " ("+
-			" date TEXT , " +
-			" open REAL , " + 
-			" high REAL , " + 
-			" low REAL , " + 
-			" close REAL , " + 
-			" volume NUMERIC , " + 
-			" adj_close REAL " +
+			" `date`	TEXT NOT NULL UNIQUE, " +
+			" `open`	REAL NOT NULL, " + 
+			" `high`	REAL NOT NULL, " + 
+			" `low`	REAL NOT NULL, " + 
+			" `close`	REAL NOT NULL, " + 
+			" `volume`	NUMERIC, " + 
+			" `adj_close`	REAL, " +
+			" PRIMARY KEY(date) " +
 			"); ");
 		console.log("table created");
 	}
 
 	writeSql(sqlstr: string) {
-		alert("writeSql:"+sqlstr)
+		console.log("writeSql:"+sqlstr)
 		this.db.run(sqlstr);
 		fs.writeFileSync(this.dbname, new Buffer(this.db.export()));
 	}
@@ -35,25 +47,42 @@ export class Security {
 	getSymbol(): string {
 		return this.symbol;
 	}
-
-
-	async getHistory(date_start: String, date_end: String) {
+	
+	saveHistory(){
+		
+	}
+	
+	async loadHistory(date_start: string, date_end: string, filename ? : string) {
 		console.log("getHistory(" + this.symbol + ")");
+		let json;
+		if ( filename ) {
+			console.log("Filename "+filename+" set, loading from file " + filename)
+			//let json = JSON.parse(fs.readFileSync(path.join(__dirname, this.symbol+".json")).toString());
+			let json = JSON.parse(fs.readFileSync(filename).toString());
+			console.log(fs.readFileSync(path.join(__dirname, this.symbol+".json")).toString())
 
-/// CATCH ERROR HERE TRY {} CATCH {}
 
-		let json = await this.query(
-			'Select * from yahoo.finance.historicaldata where ' +
-			'startDate="' + date_start + '" ' +
-			'AND endDate="' + date_end + '"' +
-			'AND symbol="' + this.getSymbol() + '"');
+			console.log(json);
+		} else if(sql_query()){
+			// Prepare an sql statement
+			var stmt = this.db.prepare("SELECT * FROM "+this.symbol+" WHERE a=:aval AND b=:bval");
+			
+			// Bind values to the parameters and fetch the results of the query
+			var result = stmt.getAsObject({':aval' : 1, ':bval' : 'world'});
+		} else {
+			let json = await this.query(
+				'Select * from yahoo.finance.historicaldata where ' +
+				'startDate="' + date_start + '" ' +
+				'AND endDate="' + date_end + '"' +
+				'AND symbol="' + this.getSymbol() + '"');
+		}
 		try {
-			alert("query results=" + json.query.results.quote.length)
+			console.log("query results=" + json.query.results.quote.length)
 			for (var i = 0; i < json.query.results.quote.length; i++) {
-				alert("in for loop");
+				console.log("in for loop");
 				let d = json.query.results.quote[i];
-				alert(JSON.stringify(d));
-				this.writeSql("INSERT INTO " + this.symbol + " (" +
+				console.log(JSON.stringify(d));
+				this.writeSql("REPLACE INTO " + this.symbol + " (" +
 					" date , " +
 					" open , " +
 					" high , " +
@@ -72,49 +101,8 @@ export class Security {
 					"); ");
 			}
 		} catch (e) {
-			alert("ERROR:" + e);
+			console.log("ERROR:" + e);
 		}
-		/**
-		return this.query(
-			'Select * from yahoo.finance.historicaldata where ' +
-					'startDate="' + date_start + '" ' +
-					'AND endDate="' + date_end + '"' +
-					'AND symbol="' + this.getSymbol() + '"'
-		).then(function (json) {
-			try {
-				alert("query results=" + json.query.results.quote.length)
-				for (var i = 0; i < json.query.results.quote.length; i++) {
-					alert("in for loop");
-					let d = json.query.results.quote[i];
-					alert(JSON.stringify(d));
-					this.writeSql("INSERT INTO " + this.symbol + " (" +
-						" date , " +
-						" open , " +
-						" high , " +
-						" low , " +
-						" close , " +
-						" volume , " +
-						" adj_close " +
-						") VALUES (" +
-						"'" + d.Date + '"' +
-						"'" + d.Open + '"' +
-						"'" + d.High + '"' +
-						"'" + d.Low + '"' +
-						"'" + d.Close + '"' +
-						"'" + d.Volume + '"' +
-						"'" + d.Adj_Close + '"' +
-						"); ");
-				}
-			} catch (e) {
-				alert("ERROR:" + e);
-			}
-**/
-			// return the json -- but I should return the date range requested
-			// tsdoc?
-			// tab is messed up -- indenting I mean
-			// take date range as input, then check to see if date is already saved
-		//return json.query.results.quote;
-		//})
 	}
 	
 	async query(query) {
