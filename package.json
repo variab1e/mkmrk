@@ -30,6 +30,7 @@
     "electron-prebuilt": "^1.0.1",
     "eslint": "^2.11.1",
     "tslint": "^3.10.2",
+    "typedoc": "^0.4.1",
     "typescript": "^1.8.10",
     "typings": "^1.0.4"
   },

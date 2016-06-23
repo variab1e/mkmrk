@@ -1,0 +1,1 @@
+typedoc -tsconfig $var/mkmrk/tsconfig.json --readme $var/mkmrk/readme.md --name MkMrk  --out $var/mkmrk/doc/ $var/mkmrk/

@@ -33,6 +33,7 @@ cd electron-quick-start
 npm install && npm start
 ```
 
+
 Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/latest).
 
 # Typescript
@@ -83,6 +84,8 @@ https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
 # Graphing
 
 http://plottablejs.org/examples/finance/
+
+https://github.com/palantir/plottable/wiki/Using-Plottable-With-Typescript-1.5
 
 # Queries
 
