@@ -1,5 +1,5 @@
 # EH1 electron starting
-[mkmrk github repo](https://github.com/variab1e/mkmrk)
+[mkmrk github repo](https://github.com/erichiller/mkmrk)
 
 **from electron-quickstart** This is a minimal Electron application based on the [Quick Start Guide](http://electron.atom.io/docs/latest/tutorial/quick-start) within the Electron documentation.
 
@@ -21,6 +21,7 @@ You can learn more about each of these components within the [Quick Start Guide]
     - [typescript docs](https://www.typescriptlang.org/docs/tutorial.html)
 * use build `scripts` in `package.json`
 * [example of electron typescript application](https://github.com/steve-perkins/MediaGallery/blob/master/renderer.ts)
+* **DO NOT INCLUDE THE EXTENSION ON IMPORT STATEMENTS** ie. `import { Security } from './security';` NOT `import { Security } from './security.ts';`
 
 To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 

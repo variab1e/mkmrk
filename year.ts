@@ -1,31 +1,32 @@
-import { Day , DayArray } from './day.ts'
+import { Day , DayArray } from './day'
 
 export class Year {
-	year: number;
 	
-	constructor(year: number){ }
+	constructor(
+		private year: number
+		){ }
 	
 	getHoliDays(): DayArray {
-		let days: DayArray;
+		let days = new DayArray();
 		
 		/** New Years */
-		days[days.length] = this.weekendNextMonday(new Day(this.year,1,1));
+		days.push(this.weekendNextMonday(new Day(this.year,1,1)));
 		/** MLK is the 3rd Monday in January */
-		days[days.length] = this.getDayOfWeekOccurance(1,1,3);
+		days.push(this.getDayOfWeekOccurance(1,1,3));
 		/** Washington's birthday is the 3rd Monday in February */
-		days[days.length] = this.getDayOfWeekOccurance(2,1,3);
+		days.push(this.getDayOfWeekOccurance(2,1,3));
 		/** Good Friday , 2 days before Easter */
-		days[days.length] = this.getGoodFriday();
+		days.push(this.getGoodFriday());
 		/** Memorial Day is the LAST Monday in May */
-		days[days.length] = this.getMemorialDay();
+		days.push(this.getMemorialDay());
 		/** The Fourth of July */
-		days[days.length] = this.weekendNextMonday(new Day(this.year,7,4));
+		days.push(this.weekendNextMonday(new Day(this.year,7,4)));
 		/** Labor Day is the 1st Monday in September */
-		days[days.length] = this.getDayOfWeekOccurance(9,1,1);
+		days.push(this.getDayOfWeekOccurance(9,1,1));
 		/** Thanksgiving is the Fourth Thursday in November */
-		days[days.length] = this.getDayOfWeekOccurance(11,4,4);
+		days.push(this.getDayOfWeekOccurance(11,4,4));
 		/** Christmas */
-		days[days.length] = this.weekendNextMonday(new Day(this.year,12,25))
+		days.push(this.weekendNextMonday(new Day(this.year,12,25)));
 		return days;
 	}
 	

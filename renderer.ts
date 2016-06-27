@@ -4,7 +4,6 @@ let ipcRenderer = electron.ipcRenderer;
 let fs          = require("fs");
 let Plottable   = require("Plottable");
 
-
 // Receive log messages from the main process, which cannot access the dev tools console directly.
 ipcRenderer.on("send-console", (event, arg) => {
   console.log(arg);
@@ -16,7 +15,7 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
   var stock = new Security('YHOO');
   stock.getHistory("2016-01-14","2016-01-15")
 	.then(json => console.log(json))
-	.catch(reason => console.log("ERROR:" + reason))
+	//.catch(reason => console.log("ERROR:" + reason))
 
   makeBasicChart();
 });

@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/variab1e/mkmrk"
+    "url": "https://github.com/erichiller/mkmrk"
   },
   "keywords": [
     "mkmrk",
@@ -22,9 +22,9 @@
   "author": "Eric D Hiller",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/variab1e/mkmrk/issues"
+    "url": "https://github.com/erichiller/mkmrk/issues"
   },
-  "homepage": "https://github.com/variab1e/mkmrk#readme",
+  "homepage": "https://github.com/erichiller/mkmrk#readme",
   "devDependencies": {
     "electron-packager": "^7.0.2",
     "electron-prebuilt": "^1.0.1",

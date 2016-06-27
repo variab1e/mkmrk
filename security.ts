@@ -2,30 +2,8 @@ import fetch 		= require('isomorphic-fetch');
 import fs 			= require('fs');
 import sql 			= require('sql.js');
 import path 		= require('path');
-import { Day , DayArray }	from './day.ts';
-import { Year } from './year.ts';
-
-export class DayRecord extends Day {
-	date: string;
-	open: number;
-	high: number;
-	low: number;
-	close: number;
-	volume: number;
-	adj_close: number;
-	
-	constructor(
-		date: string,
-		open: number,
-		high: number,
-		low: number,
-		close: number,
-		volume: number,
-		adj_close: number
-	){
-		super(date);
-	}
-}
+import { Day , DayArray , DayRecord } from './day';
+import { Year } from './year';
 
 export class Security {
 
@@ -66,7 +44,7 @@ export class Security {
 	
 	historyFromSql(date_start,date_end):DayArray {
 		try {
-			let dayRecords: DayArray;
+			let dayRecords: DayArray = new DayArray();
 			this.db.each('SELECT * FROM '+this.symbol+' WHERE '+
 					'date>="'+date_start+'" AND date<="'+date_end+'" ORDER BY date',
 										function(r){
@@ -152,10 +130,10 @@ export class Security {
 	}
 	
 	async getHistory(dayStartString: string, dayEndString: string, filename ? : string) {
-		
+
 		let dayStart = new Day(dayStartString);
 		let dayEnd = new Day(dayEndString);
-		
+
 		this.createHistoryDayRange(dayStart,dayEnd);
 		console.log("getHistory(" + this.symbol + ")");
 		let json;
