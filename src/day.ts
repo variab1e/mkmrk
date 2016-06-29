@@ -21,6 +21,7 @@ export class DayArray extends Array<Day | DayRecord> {
 	 * @return {boolean} true if within the array, false if not
 	 */
 	includes(compareItem: Day | DayRecord): boolean {
+		console.log(this.length);
 		for (let i = 0; i < this.length; i++) {
 			if (compareItem.day == this.values[i].day &&
 				compareItem.month == this.values[i].month &&

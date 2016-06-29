@@ -8,16 +8,24 @@ import { Year } from './year';
 export class Security {
 
 	private db;
+	private dbpath: string;
 	private history: DayArray;
 	private dayRange: Day[];
 	private expectedDays: DayArray;
 	
 	constructor(
 		private symbol: string,
-		private dbname: string = "f.db" 
+		/**
+		 * path for the database
+		 * `./` and `process.cwd()` both reference the directory that node was called from
+		 * `__dirname` references the directory that the file resides in
+		 * http://www.hacksparrow.com/understanding-directory-references-in-node-js.html
+		 */
+		private dbname: string = "data/f.db" 
 	) {
 		console.log("Security constructor for " + symbol);
-		this.db = new sql.Database(fs.readFileSync(path.join(__dirname, this.dbname)));
+		this.dbpath = path.join(__dirname, ".." , this.dbname);
+		this.db = new sql.Database(fs.readFileSync(this.dbpath));
 		// date stored as ISO 8601
 		this.writeSql("CREATE TABLE IF NOT EXISTS " + this.symbol + " ("+
 			" `date`	TEXT NOT NULL UNIQUE, " +
@@ -35,7 +43,7 @@ export class Security {
 	writeSql(sqlstr: string) {
 		console.log("writeSql:"+sqlstr)
 		this.db.run(sqlstr);
-		fs.writeFileSync(this.dbname, new Buffer(this.db.export()));
+		fs.writeFileSync(this.dbpath, new Buffer(this.db.export()));
 	}
 	
 	getSymbol(): string {
@@ -95,6 +103,7 @@ export class Security {
 	}
 	
 	createHistoryDayRange(dayStart: Day, dayEnd: Day){
+		let holidays: DayArray = new DayArray();
 		for(let d = dayStart.day, m=dayStart.month, y=dayStart.year, dd=new Day(y,m,d) , holidays = new Year(y).getHoliDays(); 
 			dd.getTime() < dayEnd.getTime(); 
 			(d<=new Year(y).daysInMonth(m)? d+=1 : ( m==12 ? ( d=1 , m=1 , y++ , holidays=new Year(y).getHoliDays() ) : ( d=1 , m++ ) ) )
@@ -135,10 +144,12 @@ export class Security {
 		let dayEnd = new Day(dayEndString);
 
 		this.createHistoryDayRange(dayStart,dayEnd);
+		alert('foo');
 		console.log("getHistory(" + this.symbol + ")");
 		let json;
 		if ( filename ) {
 			console.log("Filename "+filename+" set, loading from file " + filename)
+			/** NOTE TO SELF: DIRECTORY SHOULD BE:: `../data/` */
 			//let json = JSON.parse(fs.readFileSync(path.join(__dirname, this.symbol+".json")).toString());
 			let json = JSON.parse(fs.readFileSync(filename).toString());
 			let dayRecords = this.historyParseJson(json) ;

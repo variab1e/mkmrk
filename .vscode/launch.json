@@ -2,36 +2,75 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Launch",
-			"type": "node",
+			"name": "Debug",
+			"type": "chrome",
 			"request": "launch",
-			"program": "${workspaceRoot}/main.js",
-			"stopOnEntry": false,
-			"args": [],
-			"cwd": "${workspaceRoot}",
-			"preLaunchTask": null,
-			"runtimeExecutable": null,
+//			"program": "${workspaceRoot}/src/main.ts",
+//			"program": "${workspaceRoot}/bin/main.js",
+//			"stopOnEntry": false,
+//			"args": [],
+//			"cwd": "${workspaceRoot}",
+			"sourceMaps": true,
+//			"preLaunchTask": "build",
+//			"externalConsole": false,
+//     		"outDir": "${workspaceRoot}/bin",
+			"runtimeExecutable": "${workspaceRoot}/node_modules/electron-prebuilt/dist/electron.exe",
+			//"runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd",
+			// Optional arguments passed to the runtime executable.
 			"runtimeArgs": [
-				"--nolazy"
-			],
-			"env": {
-				"NODE_ENV": "development"
-			},
-			"externalConsole": false,
-			"sourceMaps": false,
-			"outDir": null
-		},
-		{
-			"name": "Attach",
-			"type": "node",
-			"request": "attach",
-			"port": 5858,
-			"address": "localhost",
-			"restart": false,
-			"sourceMaps": false,
-			"outDir": null,
-			"localRoot": "${workspaceRoot}",
-			"remoteRoot": null
+//       		"--enable-logging",
+//				"--nolazy",
+     			"--remote-debugging-port=9222",
+				"--host-rules='MAP * 127.0.0.1'",
+				"${workspaceRoot}"
+//			],
+			]
+			// Environment variables passed to the program.
+//			"env": {
+//				"NODE_ENV": "development"
+//			}
+			
 		}
 	]
+
+/**		
+	    "configurations": [
+            {
+                // Name of configuration; appears in the launch configuration drop down menu.
+                "name": "Launch electron",
+                // Type of configuration. Possible values: "node", "mono".
+                "type": "node",
+                // Workspace relative or absolute path to the program.
+                "program": "${workspaceRoot}/src/main.ts",
+                // Automatically stop program after launch.
+                "stopOnEntry": false,
+                // Command line arguments passed to the program.
+                "args": [],
+                // Workspace relative or absolute path to the working directory of the program being debugged. Default is the current workspace.
+                "cwd": "${workspaceRoot}",
+                // Workspace relative or absolute path to the runtime executable to be used. Default is the runtime executable on the PATH.
+                "runtimeExecutable": "${workspaceRoot}/node_modules/electron-prebuilt/dist/electron.exe",
+                // Optional arguments passed to the runtime executable.
+                "runtimeArgs": [
+				],
+                // Environment variables passed to the program.
+                "env": {"ATOM_SHELL_INTERNAL_RUN_AS_NODE": "0"},
+                // Use JavaScript source maps (if they exist).
+                "sourceMaps": true,
+                // If JavaScript source maps are enabled, the generated code is expected in this directory.
+                "outDir": "${workspaceRoot}/bin/"
+            },
+            {
+                "name": "Attach",
+                "type": "node",
+                // TCP/IP address. Default is "localhost".
+                "address": "localhost",
+                // Port to attach to.
+                "port": 5858,
+                "sourceMaps": true
+            }
+        ]
+    }
+]
+**/
 }
