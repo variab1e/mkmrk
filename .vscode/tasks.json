@@ -2,7 +2,12 @@
 	// See https://go.microsoft.com/fwlink/?LinkId=733558
 	// for the documentation about the tasks.json format
 	"version": "0.1.0",
-	"command": "C:/cmder/vendor/nodejs/npm",
+	"windows": {
+		"command": "C:/cmder/vendor/nodejs/npm"
+	},
+	"osx": {
+		"command": "npm"
+	},
 	"isShellCommand": true,
 	"showOutput": "always",
 	"suppressTaskName": true,
@@ -16,8 +21,9 @@
 			"args": ["update"]
 		},
 		{
-			"taskName": "test",
-			"args": ["run", "test"]
+			"taskName": "start",
+			"isBuildCommand": true,
+			"args": ["start"]
 		},
 		{
 			"taskName": "build",

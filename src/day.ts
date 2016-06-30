@@ -1,4 +1,5 @@
 //import { DayRecord } from './dayRecord.ts';
+import { errorHandler } from './log'
 
 enum Holiday {
 	"New Years" = 0,
@@ -14,6 +15,9 @@ enum Holiday {
 
 export class DayArray extends Array<Day | DayRecord> {
 
+
+
+
 	/** 
 	 * This should override the native includes so that boolean true is returned if 
 	 * the Day input for compare item is in this array
@@ -21,11 +25,15 @@ export class DayArray extends Array<Day | DayRecord> {
 	 * @return {boolean} true if within the array, false if not
 	 */
 	includes(compareItem: Day | DayRecord): boolean {
+
+		//throw new errorHandler(JSON.stringify(this), new Error());
+	
 		console.log(this.length);
 		for (let i = 0; i < this.length; i++) {
-			if (compareItem.day == this.values[i].day &&
-				compareItem.month == this.values[i].month &&
-				compareItem.year == this.values[i].year
+			console.log("comparing["+compareItem.day+"|to|"+this[i].day+"]");
+			if (compareItem.day == this[i].day &&
+				compareItem.month == this[i].month &&
+				compareItem.year == this[i].year
 			) {
 				return true;
 			}
