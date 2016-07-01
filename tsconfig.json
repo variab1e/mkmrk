@@ -10,7 +10,7 @@
 		"noImplicitAny": false,
 		"noLib": false,
 		"outDir": "bin",
-		"sourceRoot": "src",
+		//"sourceRoot": "src",
 		"allowUnreachableCode": true
 	},
 	"exclude": [

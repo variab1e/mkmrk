@@ -23,6 +23,12 @@ See [Debugging the main process](http://electron.atom.io/docs/tutorial/debugging
 
 [Debugging the rendering process](http://electron.rocks/debugging-electron-in-vs-code-revised/) must be done via the chrome-dev-tools extension in vscode.
 
+[stack-trace - debug library](https://github.com/stacktracejs/stacktrace.js)  
+[stack-trace - node specific package](https://www.npmjs.com/package/stack-trace)
+
+
+
+
 ## Chrome (Renderer) Command Line switches
 
 <https://github.com/electron/electron/blob/master/docs/api/chrome-command-line-switches.md>

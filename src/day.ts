@@ -15,9 +15,6 @@ enum Holiday {
 
 export class DayArray extends Array<Day | DayRecord> {
 
-
-
-
 	/** 
 	 * This should override the native includes so that boolean true is returned if 
 	 * the Day input for compare item is in this array
@@ -27,10 +24,15 @@ export class DayArray extends Array<Day | DayRecord> {
 	includes(compareItem: Day | DayRecord): boolean {
 
 		//throw new errorHandler(JSON.stringify(this), new Error());
+
+	//	try { throw Error('') } catch(err){ console.log(err.stack.split("\n") ) }
 	
 		console.log(this.length);
 		for (let i = 0; i < this.length; i++) {
-			console.log("comparing["+compareItem.day+"|to|"+this[i].day+"]");
+			/** bit of logging here */
+			console.log("comparing["+compareItem.year+"-"+compareItem.month+"-"+compareItem.day+
+				"|to|"+
+				this[i].year+"|to|"+this[i].month+"-"+this[i].day+"]");
 			if (compareItem.day == this[i].day &&
 				compareItem.month == this[i].month &&
 				compareItem.year == this[i].year
@@ -63,18 +65,18 @@ export class Day {
 			this.year = parseInt(year);
 			this.month = parseInt(month);
 			this.day = parseInt(day);
-			console.log("day constructed from dateString");
+			console.log(`day constructed from dateString => ${this.year}-${this.month}-${this.day}`);
 		} else if (typeof a == "object" && a instanceof Date) {
 			this.year = a.getFullYear();
 			this.month = a.getMonth();
 			this.day = a.getDate();
-			console.log("day constructed from date");
+			console.log(`day constructed from date => ${this.year}-${this.month}-${this.day}`);
 		} else if (typeof a === 'number') {
 			// number[]
 			this.year = a;
 			this.month = b;
 			this.day = c;
-			console.log("day constructed from year , month , day");
+			console.log(`day constructed from year , month , day => ${this.year}-${this.month}-${this.day}`);
 		} else {
 			console.log("no value found to construct day->",a,b,c);
 		}

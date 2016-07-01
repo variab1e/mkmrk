@@ -1,32 +1,43 @@
 import { Day , DayArray } from './day'
 
+
+/**
+ * Year is the holder for holidays and paramaters of a year
+ * @param {Object} year - four digit year
+ */
 export class Year {
+
+	//private daysInMonth: number[];
 	
 	constructor(
 		private year: number
-		){ }
+		){
+		console.log("Constructed new year=>"+year);
+	}
 	
 	getHoliDays(): DayArray {
 		let days = new DayArray();
 		
-		/** New Years */
-		days.push(this.weekendNextMonday(new Day(this.year,1,1)));
-		/** MLK is the 3rd Monday in January */
-		days.push(this.getDayOfWeekOccurance(1,1,3));
-		/** Washington's birthday is the 3rd Monday in February */
-		days.push(this.getDayOfWeekOccurance(2,1,3));
-		/** Good Friday , 2 days before Easter */
-		days.push(this.getGoodFriday());
-		/** Memorial Day is the LAST Monday in May */
-		days.push(this.getMemorialDay());
-		/** The Fourth of July */
-		days.push(this.weekendNextMonday(new Day(this.year,7,4)));
-		/** Labor Day is the 1st Monday in September */
-		days.push(this.getDayOfWeekOccurance(9,1,1));
-		/** Thanksgiving is the Fourth Thursday in November */
-		days.push(this.getDayOfWeekOccurance(11,4,4));
-		/** Christmas */
-		days.push(this.weekendNextMonday(new Day(this.year,12,25)));
+		//KILL: !! I must weekendNextMonday all of these !!
+
+		/** New Years */											// 2016-01-01
+		days.push(this.weekendNextMonday(new Day(this.year,1,1)));	// OK
+		/** MLK is the 3rd Monday in January */						// 2016-01-18
+		days.push(this.getDayOfWeekOccurance(1,1,3));				// OK
+		/** Washington's birthday is the 3rd Monday in February */	// 2016-02-15
+		days.push(this.getDayOfWeekOccurance(2,1,3));				// OK
+		/** Good Friday , 2 days before Easter */					// 2016-03-25
+		days.push(this.getGoodFriday());							// OK
+		/** Memorial Day is the LAST Monday in May */				// 2016-05-30
+		days.push(this.getMemorialDay());							// OK
+		/** The Fourth of July */									// 2016-07-04
+		days.push(this.weekendNextMonday(new Day(this.year,7,4))); 	// OK
+		/** Labor Day is the 1st Monday in September */				// 2016-09-05
+		days.push(this.getDayOfWeekOccurance(9,1,1));				// OK
+		/** Thanksgiving is the Fourth Thursday in November */		// 2016-11-24
+		days.push(this.getDayOfWeekOccurance(11,4,4));				// OK
+		/** Christmas */											// 2016-12-25
+		days.push(this.weekendNextMonday(new Day(this.year,12,25)));// OK
 		return days;
 	}
 	
@@ -39,9 +50,10 @@ export class Year {
 		/** @desc started in February */ 
 		let m: number=5;
 		/** start at the last day in the month and count backwards */
-		let d: number=this.daysInMonth(m);
+		let d: number=this.getDaysInMonth(m);
 		for ( let y=this.year, date: Date; d>0;d--){
-			date = new Date(this.year,m,d);
+			/** NOTE: javascript native Date type month parameter is zero based */
+			date = new Date(this.year,m-1,d);
 			if ( date.getDay() == 1 ) { break; }
 		}
 		return new Day(this.year,m,d);
@@ -55,14 +67,25 @@ export class Year {
 	 * @return {Day} return the Day object of this occurance
 	 */
 	getDayOfWeekOccurance(month: number, dayOfWeek: number, occurance: number): Day {
-		/** @desc {number} day to start with */
+		/**
+		 * d is the day to start with
+		 * @type {number}
+		 */
 		let d: number=1;
-		for ( let y=this.year, maxDays=this.daysInMonth(month), date: Date; d<maxDays;d++){
-			date = new Date(this.year,month,d);
+		let maxDays=this.getDaysInMonth(month);
+		for ( let y=this.year, date: Date; d<=maxDays; d++){
+			/** NOTE: javascript native Date type month parameter is zero based */
+			date = new Date(y,month-1,d);
+			console.log(date.getDay()+`=?=${dayOfWeek}`);
 			if ( date.getDay() == dayOfWeek ) { break; }
+			console.log("no match");
 		}
 		/** @desc now that the first occurance is found, we add (N-1)*7 weeks in order to find the correct occurance */ 
 		d += ( ( occurance - 1 ) * 7 ) ;
+		if ( d > maxDays ) {
+			/** Error */
+			throw `ERROR: DayOfWeekOccurance ${d} is greater than days ${maxDays} in month ${month}.`;
+		}
 		
 		return new Day(this.year,month,d);
 	}
@@ -79,9 +102,20 @@ export class Year {
 		let m: number=day.month;
 		/** @desc {number} year for the day */
 		let y: number=day.year;
-		/** @desc {Date} Date object to calculate day of week with */
-		let date: Date = new Date(y,m,d);
-		if ( [0,6].indexOf(date.getDay()) < 0 ){
+		/**
+		 * date - Date object to calculate day of week with
+		 * NOTE: javascript native Date type month parameter is zero based  
+		 * @type {Date}  */
+		console.log(`constructing new date for weekend check.... ${y}-${m}-${d}`);
+		let date: Date = new Date(y,m-1,d);
+		console.log("day of week is =>"+date.getDay());
+		/** 
+		 * If the day is found in the array of weekend days [0,6] being [sunday,saturday]
+		 * then this is a weekend day, proceed to bump forward
+		 * If the day is not a weekend day, and not found in the index, it will return a -1 index.
+		 */
+		if ( [0,6].indexOf(date.getDay()) >= 0 ){
+			console.log(`${y}-${m}-${d} is weekend=`+date.getDay());
 			/** check if date / day is on Sunday I add 1 */
 			if ( date.getDay() == 0 ) { d+= 1; }
 			/** else if date / day is on Saturday, add 2 */
@@ -99,8 +133,10 @@ export class Year {
 	 * @param {number} month - month of the year
 	 * @return {number} daysInMonth - days in the month
 	 */
-	daysInMonth(month:number) {
-		return new Date(this.year, month, 0).getDate();
+	getDaysInMonth(month:number) {
+		let daysInMonth = new Date(this.year, month, 0).getDate();
+		console.log("lastDay of month "+this.year+"-"+month+"==>"+daysInMonth);
+		return daysInMonth;
 	}
 	
 	/**

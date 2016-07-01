@@ -9,9 +9,9 @@ export class Security {
 
 	private db;
 	private dbpath: string;
-	private history: DayArray;
-	private dayRange: Day[];
-	private expectedDays: DayArray;
+	private history: DayArray = new DayArray();
+	private dayRange: Day[] = new Array();
+	private expectedDays: DayArray = new DayArray();
 	
 	constructor(
 		private symbol: string,
@@ -104,13 +104,21 @@ export class Security {
 	
 	createHistoryDayRange(dayStart: Day, dayEnd: Day){
 		let holidays: DayArray = new DayArray();
-		for(let d = dayStart.day, m=dayStart.month, y=dayStart.year, dd=new Day(y,m,d) , holidays = new Year(y).getHoliDays(); 
+		for(
+			let d = dayStart.day, m=dayStart.month, y=dayStart.year, dd=new Day(y,m,d) , holidays = new Year(y).getHoliDays(); 
+			
 			dd.getTime() < dayEnd.getTime(); 
-			(d<=new Year(y).daysInMonth(m)? d+=1 : ( m==12 ? ( d=1 , m=1 , y++ , holidays=new Year(y).getHoliDays() ) : ( d=1 , m++ ) ) )
-			){
+			
+			(d<new Year(y).getDaysInMonth(m)? d+=1 : 
+				( m==12 ? ( d=1 , m=1 , y++ , holidays=new Year(y).getHoliDays() ) : ( d=1 , m++ ) ) 
+			)
+		){
+			console.log(`currently testing day ${y}-${m}-${d}`);
+			// day is the day currently being tested
 			let day = new Day(y,m,d);
 			if (day.isWeekend()) {
 				/** it is a weekend */
+				// dayRange is the an array of all days tested, add it here
 				this.dayRange.push(day);
 				continue;
 			} else if (holidays.includes(day)){
@@ -121,8 +129,10 @@ export class Security {
 			} else {
 				/** these are the weekday, non-holidays, they should have trading activity */
 				this.dayRange.push(day);
+				// add it to the array of days we expect to find data for, as it is neither a weekend nor a holiday.
 				this.expectedDays.push(day);
 			}
+			console.log(`end of loop for day ${y}-${m}-${d}`);
 		}
 	}
 	
