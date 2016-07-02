@@ -98,19 +98,27 @@ export class Day {
 	 * @return {boolean} return true if this is a weekend day, else false
 	 */
 	isWeekend(): boolean {
-		if ([0, 6].indexOf(this.getDate().getDay()) < 0) {
+		if ([0, 6].indexOf(this.getDate().getDay()) >= 0) {
 			return true;
 		}
 		return false;
 	}
+	/** 
+	 * @return {string} returns this in string format `YYYY-MM-DD`
+	 * */
+	toString
 	getString(): string {
 		return this.year + "-" + this.padMonth() + "-" + this.padDay();
 	}
+	
+	/** 
+	 * @return {Date} returns a native javascript Date object set to this
+	 * */
 	getDate(): Date {
-		return new Date(this.year, this.month, this.day);
+    	/** NOTE: javascript native Date type month parameter is zero based */
+		return new Date(this.year, this.month-1, this.day);
 	}
 	/** 
-	 * 
 	 * @return {number} returns the unixtimestamp (in seconds)
 	 * */
 	getTime(): number {

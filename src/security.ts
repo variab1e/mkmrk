@@ -50,11 +50,11 @@ export class Security {
 		return this.symbol;
 	}
 	
-	historyFromSql(date_start,date_end):DayArray {
+	historyFromSql(dayStart: Day,dayEnd: Day):DayArray {
 		try {
 			let dayRecords: DayArray = new DayArray();
 			this.db.each('SELECT * FROM '+this.symbol+' WHERE '+
-					'date>="'+date_start+'" AND date<="'+date_end+'" ORDER BY date',
+					'date>="'+dayStart.getString() +'" AND date<="'+dayEnd.getString()+'" ORDER BY date',
 										function(r){
 											console.log(r);
 											dayRecords.push(new DayRecord(
@@ -72,6 +72,7 @@ export class Security {
 		} catch (e) {
 			console.log("ERROR:" + e);
 		}
+		console.log("historyFromSql ERROR - null being returned.")
 		return null;
 	}
 	
@@ -105,9 +106,9 @@ export class Security {
 	createHistoryDayRange(dayStart: Day, dayEnd: Day){
 		let holidays: DayArray = new DayArray();
 		for(
-			let d = dayStart.day, m=dayStart.month, y=dayStart.year, dd=new Day(y,m,d) , holidays = new Year(y).getHoliDays(); 
+			let d = dayStart.day, m=dayStart.month, y=dayStart.year, day=new Day(y,m,d) , holidays = new Year(y).getHoliDays(); 
 			
-			dd.getTime() < dayEnd.getTime(); 
+			day.getTime() < dayEnd.getTime(); 
 			
 			(d<new Year(y).getDaysInMonth(m)? d+=1 : 
 				( m==12 ? ( d=1 , m=1 , y++ , holidays=new Year(y).getHoliDays() ) : ( d=1 , m++ ) ) 
@@ -115,15 +116,16 @@ export class Security {
 		){
 			console.log(`currently testing day ${y}-${m}-${d}`);
 			// day is the day currently being tested
-			let day = new Day(y,m,d);
+			day = new Day(y,m,d);
 			if (day.isWeekend()) {
 				/** it is a weekend */
+				console.log(`${y}-${m}-${d} is a weekend - not being added to expectedDays`);
 				// dayRange is the an array of all days tested, add it here
 				this.dayRange.push(day);
 				continue;
 			} else if (holidays.includes(day)){
 				/** it is a holiday */
-				//day.getHoliday();
+				console.log(`${y}-${m}-${d} is a holiday - not being added to expectedDays`);
 				this.dayRange.push(day);
 				continue;
 			} else {
@@ -136,14 +138,20 @@ export class Security {
 		}
 	}
 	
-	checkHistoryRange(dayRecord: DayArray){
+	checkHistoryRange(dayRecord: DayArray): boolean {
 		/** check if the number of dayRecords is the same length as the number of expectedDays else return false */
 		if(dayRecord.length == this.expectedDays.length){
 			
-			for ( let i = 0 ; i < this.expectedDays.length ; i++ ){
+			for ( let i = 0 ; i < dayRecord.length ; i++ ){
 				/** return false if expectedDays ever does NOT include the dayRecocord */
-				if ( ! this.expectedDays.includes(new Day((<DayRecord>dayRecord[i]).date)) ) { return false } ;
+				if ( ! this.expectedDays.includes(dayRecord[i]) ) { return false } else {
+					console.log(dayRecord[i].getString() + " is expected");
+				};
 			}
+			console.log("HistoryRange has been checked and matches for SQL")
+			return true;
+		} else {
+			console.log(`dayRecord.length of ${dayRecord.length} != this.expectedDays.length of ${this.expectedDays.length}`);
 		}
 		return false
 	}
@@ -154,7 +162,6 @@ export class Security {
 		let dayEnd = new Day(dayEndString);
 
 		this.createHistoryDayRange(dayStart,dayEnd);
-		alert('foo');
 		console.log("getHistory(" + this.symbol + ")");
 		let json;
 		if ( filename ) {
@@ -172,6 +179,7 @@ export class Security {
 		} else {
 			/** try to load from SQL database */
 			try {
+				console.log("try to load data from SQL")
 				let dayRecords = this.historyFromSql(dayStart,dayEnd);
 				if ( this.checkHistoryRange(dayRecords) ){
 					this.history = dayRecords;

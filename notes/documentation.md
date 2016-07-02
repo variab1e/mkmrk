@@ -2,6 +2,10 @@
 
 ## JSDOC
 
+[overview](https://dzone.com/articles/introduction-jsdoc)
+
+[official docs](http://usejsdoc.org/)
+
 ### General format
 
 Typical format for a `symbol` (any item to be notated upon) is:
