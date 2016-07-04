@@ -49,3 +49,5 @@ Is a parameter (input value) to a method or function.
 ```
 
 A variable in square brackets `[` and `]` signifies it is optional.
+
+If a parameter can have multiple types, enter them with a vertical pipe separating them `|` like this `@param {type1|type2} description`.

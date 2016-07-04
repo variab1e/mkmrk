@@ -12,6 +12,27 @@
 	 			"--remote-debugging-port=9222",
 				"${workspaceRoot}"
 			]
+		},
+		{
+			"name": "Launch Electron",
+			"type": "node",
+			"request": "launch",
+			"program": "${workspaceRoot}/bin/main.js",
+			//"program": "${workspaceRoot}",
+			"stopOnEntry": false,
+			"args": [],
+			"cwd": "${workspaceRoot}",
+			//"preLaunchTask": null,
+			"preLaunchTask": "build",
+			//"runtimeExecutable": "${workspaceRoot}/node_modules/electron-prebuilt/dist/Electron.app/Contents/MacOS/Electron",
+			"runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+			"runtimeArgs": [],
+			"env": {},
+			"externalConsole": false,
+			//"sourceMaps": false,
+			"sourceMaps": true,
+			//"outDir": null
+			"outDir": "${workspaceRoot}/src"
 		}
 	]
 }

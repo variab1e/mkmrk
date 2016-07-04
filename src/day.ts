@@ -18,15 +18,10 @@ export class DayArray extends Array<Day | DayRecord> {
 	/** 
 	 * This should override the native includes so that boolean true is returned if 
 	 * the Day input for compare item is in this array
-	 * @param {Day} compareItem is the Day object to check if is present within the array
+	 * @param {Day | DayRecord} compareItem is the Day object to check if is present within the array
 	 * @return {boolean} true if within the array, false if not
 	 */
 	includes(compareItem: Day | DayRecord): boolean {
-
-		//throw new errorHandler(JSON.stringify(this), new Error());
-
-	//	try { throw Error('') } catch(err){ console.log(err.stack.split("\n") ) }
-	
 		console.log(this.length);
 		for (let i = 0; i < this.length; i++) {
 			/** bit of logging here */
@@ -42,6 +37,25 @@ export class DayArray extends Array<Day | DayRecord> {
 		}
 		return false;
 	}
+
+	getSeries(){
+		let series: {
+			x: Date,
+			y: number
+		}[] = new Array();
+
+		this.forEach(element => {
+			if(element instanceof DayRecord){
+				series.push({
+					x: element.getDate(),
+					y: element.open
+				})
+			}
+		});
+		return series;
+	}
+
+
 }
 
 /**
@@ -68,7 +82,7 @@ export class Day {
 			console.log(`day constructed from dateString => ${this.year}-${this.month}-${this.day}`);
 		} else if (typeof a == "object" && a instanceof Date) {
 			this.year = a.getFullYear();
-			this.month = a.getMonth();
+			this.month = a.getMonth()+1;
 			this.day = a.getDate();
 			console.log(`day constructed from date => ${this.year}-${this.month}-${this.day}`);
 		} else if (typeof a === 'number') {
@@ -127,23 +141,26 @@ export class Day {
 }
 
 export class DayRecord extends Day {
+	/**
 	date: string;
-	open: number;
+	public open: number;
 	high: number;
 	low: number;
 	close: number;
 	volume: number;
 	adj_close: number;
+	**/
 	
 	constructor(
-		date: string,
-		open: number,
-		high: number,
-		low: number,
-		close: number,
-		volume: number,
-		adj_close: number
+		public date: string,
+		public open: number,
+		public high: number,
+		public low: number,
+		public close: number,
+		public volume: number,
+		public adj_close: number
 	){
 		super(date);
 	}
+
 }

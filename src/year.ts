@@ -6,9 +6,7 @@ import { Day , DayArray } from './day'
  * @param {Object} year - four digit year
  */
 export class Year {
-
-	//private daysInMonth: number[];
-	
+		
 	constructor(
 		private year: number
 		){
@@ -18,8 +16,6 @@ export class Year {
 	getHoliDays(): DayArray {
 		let days = new DayArray();
 		
-		//KILL: !! I must weekendNextMonday all of these !!
-
 		/** New Years */											// 2016-01-01
 		days.push(this.weekendNextMonday(new Day(this.year,1,1)));	// OK
 		/** MLK is the 3rd Monday in January */						// 2016-01-18

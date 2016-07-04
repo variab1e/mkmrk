@@ -9,7 +9,7 @@ export class Security {
 
 	private db;
 	private dbpath: string;
-	private history: DayArray = new DayArray();
+	public history: DayArray = new DayArray();
 	private dayRange: Day[] = new Array();
 	private expectedDays: DayArray = new DayArray();
 	
@@ -156,7 +156,7 @@ export class Security {
 		return false
 	}
 	
-	async getHistory(dayStartString: string, dayEndString: string, filename ? : string) {
+	async loadHistory(dayStartString: string, dayEndString: string, filename ? : string) {
 
 		let dayStart = new Day(dayStartString);
 		let dayEnd = new Day(dayEndString);
