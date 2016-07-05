@@ -101,7 +101,8 @@ export class Year {
 		/**
 		 * date - Date object to calculate day of week with
 		 * NOTE: javascript native Date type month parameter is zero based  
-		 * @type {Date}  */
+		 * @type {Date}
+		 */
 		console.log(`constructing new date for weekend check.... ${y}-${m}-${d}`);
 		let date: Date = new Date(y,m-1,d);
 		console.log("day of week is =>"+date.getDay());
