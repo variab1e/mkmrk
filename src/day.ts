@@ -1,5 +1,5 @@
 //import { DayRecord } from './dayRecord.ts';
-import { errorHandler } from './log'
+import { eLog } from './log'
 
 enum Holiday {
 	"New Years" = 0,
@@ -39,6 +39,7 @@ export class DayArray extends Array<Day | DayRecord> {
 	}
 
 	getSeries(){
+		eLog("eLog Test",this);
 		let series: {
 			x: Date,
 			y: number
