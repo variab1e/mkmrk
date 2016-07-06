@@ -142,7 +142,7 @@ export class Year {
 	 */
 	getGoodFriday(): Day {
 		/** get easter as a Date Object */
-		let easter = this.getEaster().getDate();
+		let easter = this.getEaster().toDate();
 		/** two days before easter (86400 seconds in a day, 2 days, 1000 milliseconds) */
 		return new Day(new Date(easter.getTime()-(86400*2*1000)));
 	}

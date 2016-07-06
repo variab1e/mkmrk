@@ -4,17 +4,18 @@ import sql 			= require('sql.js');
 import path 		= require('path');
 import { Day , DayArray , DayRecord } from './day';
 import { Year } from './year';
+import { eLog } from './elog'
 
 export class Security {
 
 	private db;
 	private dbpath: string;
-	public history: DayArray = new DayArray();
+	private _history: DayArray = new DayArray();
 	private dayRange: Day[] = new Array();
 	private expectedDays: DayArray = new DayArray();
 	
 	constructor(
-		private symbol: string,
+		private _symbol: string,
 		/**
 		 * path for the database
 		 * `./` and `process.cwd()` both reference the directory that node was called from
@@ -23,11 +24,11 @@ export class Security {
 		 */
 		private dbname: string = "data/f.db" 
 	) {
-		console.log("Security constructor for " + symbol);
+		console.log("Security constructor for " + _symbol);
 		this.dbpath = path.join(__dirname, ".." , this.dbname);
 		this.db = new sql.Database(fs.readFileSync(this.dbpath));
 		// date stored as ISO 8601
-		this.writeSql("CREATE TABLE IF NOT EXISTS " + this.symbol + " ("+
+		this.writeSql("CREATE TABLE IF NOT EXISTS " + this._symbol + " ("+
 			" `date`	TEXT NOT NULL UNIQUE, " +
 			" `open`	REAL NOT NULL, " + 
 			" `high`	REAL NOT NULL, " + 
@@ -39,6 +40,15 @@ export class Security {
 			"); ");
 		console.log("table created");
 	}
+
+	
+	get symbol(): string {
+		return this._symbol;
+	}
+	get history(): DayArray {
+		eLog("eLog->getHistory->",this._history);
+		return this._history;
+	}
 	
 	writeSql(sqlstr: string) {
 		console.log("writeSql:"+sqlstr)
@@ -46,15 +56,11 @@ export class Security {
 		fs.writeFileSync(this.dbpath, new Buffer(this.db.export()));
 	}
 	
-	getSymbol(): string {
-		return this.symbol;
-	}
-	
 	historyFromSql(dayStart: Day,dayEnd: Day):DayArray {
 		try {
 			let dayRecords: DayArray = new DayArray();
-			this.db.each('SELECT * FROM '+this.symbol+' WHERE '+
-					'date>="'+dayStart.getString() +'" AND date<="'+dayEnd.getString()+'" ORDER BY date',
+			this.db.each('SELECT * FROM '+this._symbol+' WHERE '+
+					'date>="'+dayStart.toString() +'" AND date<="'+dayEnd.toString()+'" ORDER BY date',
 										function(r){
 											console.log(r);
 											dayRecords.push(new DayRecord(
@@ -78,9 +84,9 @@ export class Security {
 	
 	historySaveSql(){
 		try {
-			for (var i = 0; i < this.history.length; i++) {
-				let d = <DayRecord>this.history[i];
-				this.writeSql("REPLACE INTO " + this.symbol + " (" +
+			for (var i = 0; i < this._history.length; i++) {
+				let d = <DayRecord>this._history[i];
+				this.writeSql("REPLACE INTO " + this._symbol + " (" +
 					" date , " +
 					" open , " +
 					" high , " +
@@ -145,7 +151,7 @@ export class Security {
 			for ( let i = 0 ; i < dayRecord.length ; i++ ){
 				/** return false if expectedDays ever does NOT include the dayRecocord */
 				if ( ! this.expectedDays.includes(dayRecord[i]) ) { return false } else {
-					console.log(dayRecord[i].getString() + " is expected");
+					console.log(dayRecord[i].toString() + " is expected");
 				};
 			}
 			console.log("HistoryRange has been checked and matches for SQL")
@@ -162,16 +168,16 @@ export class Security {
 		let dayEnd = new Day(dayEndString);
 
 		this.createHistoryDayRange(dayStart,dayEnd);
-		console.log("getHistory(" + this.symbol + ")");
+		console.log("getHistory(" + this._symbol + ")");
 		let json;
 		if ( filename ) {
 			console.log("Filename "+filename+" set, loading from file " + filename)
 			/** NOTE TO SELF: DIRECTORY SHOULD BE:: `../data/` */
-			//let json = JSON.parse(fs.readFileSync(path.join(__dirname, this.symbol+".json")).toString());
+			//let json = JSON.parse(fs.readFileSync(path.join(__dirname, this._symbol+".json")).toString());
 			let json = JSON.parse(fs.readFileSync(filename).toString());
 			let dayRecords = this.historyParseJson(json) ;
 			if ( this.checkHistoryRange(dayRecords) ){
-				this.history = dayRecords;
+				this._history = dayRecords;
 				this.historySaveSql();
 				console.log("History loaded from file" + filename);
 				return;
@@ -182,7 +188,7 @@ export class Security {
 				console.log("try to load data from SQL")
 				let dayRecords = this.historyFromSql(dayStart,dayEnd);
 				if ( this.checkHistoryRange(dayRecords) ){
-					this.history = dayRecords;
+					this._history = dayRecords;
 					console.log("history loaded from SQL");
 					/** successfully loaded from SQL - stop processing further sources */
 					return;
@@ -193,12 +199,12 @@ export class Security {
 			/** all internal sources have failed, do a fresh external lookup */
 			let json = await this.query(
 				'Select * from yahoo.finance.historicaldata where ' +
-				'startDate="' + dayStart.getString() + '" ' +
-				'AND endDate="' + dayEnd.getString() + '"' +
-				'AND symbol="' + this.getSymbol() + '"');
+				'startDate="' + dayStart.toString() + '" ' +
+				'AND endDate="' + dayEnd.toString() + '"' +
+				'AND symbol="' + this.symbol + '"');
 			let dayRecords = this.historyParseJson(json) ;
 			if ( this.checkHistoryRange(dayRecords) ){
-				this.history = dayRecords;
+				this._history = dayRecords;
 				this.historySaveSql();
 				console.log("History loaded from file" + filename);
 				return;
@@ -222,7 +228,6 @@ export class Security {
 			))			
 		}
 		return dayRecords;
-		
 	}
 	
 	async query(query) {

@@ -2,7 +2,6 @@ require('source-map-support').install({
 	environment: 'node'
 });
 
-
 /**
  * eLog - displays calling line number & message & dumps vars as pretty json string
  * @param {string} msg - string to display in log message

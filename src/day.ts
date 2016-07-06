@@ -1,5 +1,5 @@
 //import { DayRecord } from './dayRecord.ts';
-import { eLog } from './log'
+import { eLog } from './elog'
 
 enum Holiday {
 	"New Years" = 0,
@@ -39,20 +39,34 @@ export class DayArray extends Array<Day | DayRecord> {
 	}
 
 	getSeries(){
-		eLog("eLog Test",this);
 		let series: {
 			x: Date,
-			y: number
+			y: number,
+			x2: Date,
+			y2: number
 		}[] = new Array();
 
+/**
 		this.forEach(element => {
 			if(element instanceof DayRecord){
 				series.push({
-					x: element.getDate(),
+					x: element.toDate(),
 					y: element.open
 				})
 			}
 		});
+		**/
+		this.forEach(element => {
+			if(element instanceof DayRecord){
+				series.push({
+					x: element.toDate(),
+					y: element.open,
+					x2: element.toDate(),
+					y2: element.close
+				})
+			}
+		});
+
 		return series;
 	}
 
@@ -113,7 +127,7 @@ export class Day {
 	 * @return {boolean} return true if this is a weekend day, else false
 	 */
 	isWeekend(): boolean {
-		if ([0, 6].indexOf(this.getDate().getDay()) >= 0) {
+		if ([0, 6].indexOf(this.toDate().getDay()) >= 0) {
 			return true;
 		}
 		return false;
@@ -121,15 +135,14 @@ export class Day {
 	/** 
 	 * @return {string} returns this in string format `YYYY-MM-DD`
 	 * */
-	toString
-	getString(): string {
+	toString(): string {
 		return this.year + "-" + this.padMonth() + "-" + this.padDay();
 	}
 	
 	/** 
 	 * @return {Date} returns a native javascript Date object set to this
 	 * */
-	getDate(): Date {
+	toDate(): Date {
     	/** NOTE: javascript native Date type month parameter is zero based */
 		return new Date(this.year, this.month-1, this.day);
 	}
@@ -137,7 +150,7 @@ export class Day {
 	 * @return {number} returns the unixtimestamp (in seconds)
 	 * */
 	getTime(): number {
-		return this.getDate().getTime() / 1000;
+		return this.toDate().getTime() / 1000;
 	}
 }
 
