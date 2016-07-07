@@ -48,7 +48,6 @@ function createWindow() {
   mainWindow.loadURL(`file://${__dirname}/index.html`);
   mainWindow.webContents.openDevTools();
 
-
   mainWindow.on("closed", () => {
     mainWindow = null;
   });

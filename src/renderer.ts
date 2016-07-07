@@ -7,6 +7,9 @@ let fs = require("fs");
 let Plottable = require("Plottable");
 let d3 = require("d3");
 
+let cssPositiveColor = "GREEN";
+let cssNegativeColor = "RED";
+
 
 // Receive log messages from the main process, which cannot access the dev tools console directly.
 ipcRenderer.on("send-console", (event, arg) => {
@@ -26,8 +29,8 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 
 	/** Create the SVG element and append to the DOM */
 	let chartMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-	//chartMain.setAttribute("width","100%");
-	//chartMain.setAttribute("height","100%");
+	chartMain.setAttribute("width","100%");
+	chartMain.setAttribute("height","800px");
 	//let svgNS = svg.namespaceURI;
 	chartMain.id = "chartMain";
 	document.body.appendChild(chartMain);
@@ -35,7 +38,7 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 	/** Create the plottable scales */
 	/** xScale is of type time */
 	var xScale = new Plottable.Scales.Time();
-	var xAxis = new Plottable.Axes.Numeric(xScale, "bottom");
+	var xAxis = new Plottable.Axes.Time(xScale, "bottom");
 //	xAxis.formatter(Plottable.Formatters.multiTime());
 	/** yScale is numeric/linear and formatted as currency */
 	var yScale = new Plottable.Scales.Linear();
@@ -46,19 +49,34 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 	console.log(`creating graph with series1= ${arg}`)
 	//var series1 = new Plottable.Dataset(stock.history.getSeries(), { name: "series1" });
 
+	let dataset = new Plottable.Dataset(stock.history, { name: stock.symbol });
 
-	var plot = new Plottable.Plots.Segment()
-//		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
-//		.y(function (d) { return d.close; }, yScale)
-//		.x2(function (d) { return new Day(d.date).toDate(); }, xScale)
-//		.y2(function (d) { return d.open; }, yScale)
-		.x(function (d) { return d.x; }, xScale)
-		.y(function (d) { return d.y; }, yScale)
-		.x2(function (d) { return d.x2; }, xScale)
-		.y2(function (d) { return d.y2; }, yScale)
-		.attr("stroke", function (d, i, dataset) { return dataset.metadata().name; }, colorScale)
-		.addDataset(new Plottable.Dataset(stock.history.getSeries(), { name: stock.symbol }))
-	//	.autorangeMode("y");
+	var dayRangePlot = new Plottable.Plots.Segment()
+		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
+		.y(function (d) { return d.high; }, yScale)
+		.x2(function (d) { return new Day(d.date).toDate(); }, xScale)
+		.y2(function (d) { return d.low; }, yScale)
+		.attr("stroke-width", 1)
+		.attr("stroke", function(d) { return (d.open > d.close ? cssPositiveColor : cssNegativeColor)})
+//		.x(function (d) { return d.x; }, xScale)
+//		.y(function (d) { return d.y; }, yScale)
+//		.x2(function (d) { return d.x2; }, xScale)
+//		.y2(function (d) { return d.y2; }, yScale)
+//		.attr("stroke", function (d, i, dataset) { return dataset.metadata().name; }, colorScale)
+//		.addDataset(new Plottable.Dataset(stock.history.getSeries(), { name: stock.symbol }))
+		.addDataset(dataset)
+		.autorangeMode("y");
+	
+	var dayOpenPlot = new Plottable.Plots.Scatter()
+		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
+		.y(function (d) { return d.open; }, yScale)
+		.addDataset(dataset)
+
+	var dayClosePlot = new Plottable.Plots.Scatter()
+		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
+		.y(function (d) { return d.close; }, yScale)
+		.addDataset(dataset)
+		
 	
 /** 
 	var sparklineXScale = new Plottable.Scales.Time();
@@ -99,13 +117,14 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 	var outputDefaultText = "Closest:"
 	output.text(outputDefaultText);
 **/
-	var chart = new Plottable.Components.Table([
-		[yAxis, plot],
+	let plots = new Plottable.Components.Group([dayRangePlot, dayOpenPlot, dayClosePlot]);
+	let chart = new Plottable.Components.Table([
+		[yAxis, plots],
 		[null, xAxis],
 //		[null, miniChart],
 //		[null, sparklineXAxis]
 	]);
-	chart.rowWeight(2, 0.2);
+//	chart.rowWeight(2, 0.2);
 	/** render the chart to the SVG element */
 	chart.renderTo("svg#chartMain");
 /** 
