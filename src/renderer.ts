@@ -69,6 +69,9 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 //		.addDataset(new Plottable.Dataset(stock.history.getSeries(), { name: stock.symbol }))
 		.addDataset(dataset)
 		.autorangeMode("y");
+/** 
+
+	// START OF SYMBOLS
 	
 	var dayOpenPlot = new Plottable.Plots.Scatter()
 		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
@@ -87,7 +90,9 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 		.size(9)
 		.symbol( function (d) { return Plottable.SymbolFactories.triangleUp() } )
 		.attr("fill","#ff0000");
-		
+
+	// END OF SYMBOLS
+**/
 	
 /** 
 	var sparklineXScale = new Plottable.Scales.Time();
@@ -128,7 +133,8 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 	var outputDefaultText = "Closest:"
 	output.text(outputDefaultText);
 **/
-	let plots = new Plottable.Components.Group([dayRangePlot, dayOpenPlot, dayClosePlot,symbolPlot]);
+	//let plots = new Plottable.Components.Group([dayRangePlot, dayOpenPlot, dayClosePlot,symbolPlot]);
+	let plots = new Plottable.Components.Group([dayRangePlot]);
 	let chart = new Plottable.Components.Table([
 		[yAxis, plots],
 		[null, xAxis],
