@@ -14,3 +14,12 @@
 * prestop, stop, poststop: Run by the npm stop command.
 * prestart, start, poststart: Run by the npm start command.
 * prerestart, restart, postrestart: Run by the npm restart command. Note: npm restart will run the stop and start scripts if no restart script is provided.
+
+# Packages
+
+Packages can be installed locally without
+
+`npm install --save ./lib/plottable`
+
+_where `./` is the base directory_
+

@@ -51,11 +51,14 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 
 	let dataset = new Plottable.Dataset(stock.history, { name: stock.symbol });
 
-	var dayRangePlot = new Plottable.Plots.Segment()
+//	var dayRangePlot = new Plottable.Plots.Segment()
+	var dayRangePlot = new Plottable.Plots.MarketBar()
 		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
 		.y(function (d) { return d.high; }, yScale)
-		.x2(function (d) { return new Day(d.date).toDate(); }, xScale)
+//		.x2(function (d) { return new Day(d.date).toDate(); }, xScale)
 		.y2(function (d) { return d.low; }, yScale)
+		.y3(function (d) { return d.open; }, yScale)
+		.y4(function (d) { return d.close; }, yScale)
 		.attr("stroke-width", 1)
 		.attr("stroke", function(d) { return (d.open > d.close ? cssPositiveColor : cssNegativeColor)})
 //		.x(function (d) { return d.x; }, xScale)
@@ -76,6 +79,14 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
 		.y(function (d) { return d.close; }, yScale)
 		.addDataset(dataset)
+
+	var symbolPlot = new Plottable.Plots.Scatter()
+		.addDataset(dataset)
+		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
+		.y(function (d) { return d.close; }, yScale)
+		.size(9)
+		.symbol( function (d) { return Plottable.SymbolFactories.triangleUp() } )
+		.attr("fill","#ff0000");
 		
 	
 /** 
@@ -117,7 +128,7 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 	var outputDefaultText = "Closest:"
 	output.text(outputDefaultText);
 **/
-	let plots = new Plottable.Components.Group([dayRangePlot, dayOpenPlot, dayClosePlot]);
+	let plots = new Plottable.Components.Group([dayRangePlot, dayOpenPlot, dayClosePlot,symbolPlot]);
 	let chart = new Plottable.Components.Table([
 		[yAxis, plots],
 		[null, xAxis],

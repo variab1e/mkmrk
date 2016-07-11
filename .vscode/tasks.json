@@ -21,11 +21,20 @@
 			"args": ["update"]
 		},
 		{
+			// this will compile and run the source
 			"taskName": "start",
 			"isBuildCommand": true,
-			"args": ["start"]
+			"args": ["start"],
+			// only show output upon problem matcher
+			"showOutput": "silent",
+			"problemMatcher": [
+                "$lessCompile",
+                "$tsc",
+                "$jshint"
+            ]
 		},
 		{
+			// this builds (compiles) the source
 			"taskName": "build",
 			"args": ["build"]
 		}
