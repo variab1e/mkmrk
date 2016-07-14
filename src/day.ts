@@ -138,6 +138,7 @@ export class Day {
 	toString(): string {
 		return this.year + "-" + this.padMonth() + "-" + this.padDay();
 	}
+	get dateString(): string { return this.toString() };
 	
 	/** 
 	 * @return {Date} returns a native javascript Date object set to this
@@ -166,7 +167,7 @@ export class DayRecord extends Day {
 	**/
 	
 	constructor(
-		public date: string,
+		date: string,
 		public open: number,
 		public high: number,
 		public low: number,
@@ -175,6 +176,10 @@ export class DayRecord extends Day {
 		public adj_close: number
 	){
 		super(date);
+	}
+
+	get date(): Date {
+		return this.toDate();
 	}
 
 }

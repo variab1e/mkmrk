@@ -53,12 +53,12 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 
 //	var dayRangePlot = new Plottable.Plots.Segment()
 	var dayRangePlot = new Plottable.Plots.MarketBar()
-		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
-		.y(function (d) { return d.high; }, yScale)
+//		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
+//		.y(function (d) { return d.high; }, yScale)
 //		.x2(function (d) { return new Day(d.date).toDate(); }, xScale)
-		.y2(function (d) { return d.low; }, yScale)
-		.y3(function (d) { return d.open; }, yScale)
-		.y4(function (d) { return d.close; }, yScale)
+//		.y2(function (d) { return d.low; }, yScale)
+//		.y3(function (d) { return d.open; }, yScale)
+//		.y4(function (d) { return d.close; }, yScale)
 		.attr("stroke-width", 1)
 		.attr("stroke", function(d) { return (d.open > d.close ? cssPositiveColor : cssNegativeColor)})
 //		.x(function (d) { return d.x; }, xScale)
@@ -68,11 +68,11 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 //		.attr("stroke", function (d, i, dataset) { return dataset.metadata().name; }, colorScale)
 //		.addDataset(new Plottable.Dataset(stock.history.getSeries(), { name: stock.symbol }))
 		.addDataset(dataset)
-		.autorangeMode("y");
+//		.autorangeMode("y");
 /** 
 
 	// START OF SYMBOLS
-	
+
 	var dayOpenPlot = new Plottable.Plots.Scatter()
 		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
 		.y(function (d) { return d.open; }, yScale)

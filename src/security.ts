@@ -95,7 +95,7 @@ export class Security {
 					" volume , " +
 					" adj_close " +
 					") VALUES (" +
-					"   '" + d.date + "'" +
+					"   '" + d.dateString + "'" + // should output tostring
 					" , '" + d.open + "'" +
 					" , '" + d.high + "'" +
 					" , '" + d.low + "'" +
