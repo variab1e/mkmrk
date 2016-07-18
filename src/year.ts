@@ -1,4 +1,6 @@
 import { Day , DayArray } from './day'
+import { elog } from './elog'
+
 
 
 /**
@@ -10,7 +12,7 @@ export class Year {
 	constructor(
 		private year: number
 		){
-		console.log("Constructed new year=>"+year);
+		elog("Constructed new year=>"+year);
 	}
 	
 	getHoliDays(): DayArray {
@@ -72,9 +74,9 @@ export class Year {
 		for ( let y=this.year, date: Date; d<=maxDays; d++){
 			/** NOTE: javascript native Date type month parameter is zero based */
 			date = new Date(y,month-1,d);
-			console.log(date.getDay()+`=?=${dayOfWeek}`);
+			elog(date.getDay()+`=?=${dayOfWeek}`);
 			if ( date.getDay() == dayOfWeek ) { break; }
-			console.log("no match");
+			elog("no match");
 		}
 		/** @desc now that the first occurance is found, we add (N-1)*7 weeks in order to find the correct occurance */ 
 		d += ( ( occurance - 1 ) * 7 ) ;
@@ -103,16 +105,16 @@ export class Year {
 		 * NOTE: javascript native Date type month parameter is zero based  
 		 * @type {Date}
 		 */
-		console.log(`constructing new date for weekend check.... ${y}-${m}-${d}`);
+		elog(`constructing new date for weekend check.... ${y}-${m}-${d}`);
 		let date: Date = new Date(y,m-1,d);
-		console.log("day of week is =>"+date.getDay());
+		elog("day of week is =>"+date.getDay());
 		/** 
 		 * If the day is found in the array of weekend days [0,6] being [sunday,saturday]
 		 * then this is a weekend day, proceed to bump forward
 		 * If the day is not a weekend day, and not found in the index, it will return a -1 index.
 		 */
 		if ( [0,6].indexOf(date.getDay()) >= 0 ){
-			console.log(`${y}-${m}-${d} is weekend=`+date.getDay());
+			elog(`${y}-${m}-${d} is weekend=`+date.getDay());
 			/** check if date / day is on Sunday I add 1 */
 			if ( date.getDay() == 0 ) { d+= 1; }
 			/** else if date / day is on Saturday, add 2 */
@@ -132,7 +134,7 @@ export class Year {
 	 */
 	getDaysInMonth(month:number) {
 		let daysInMonth = new Date(this.year, month, 0).getDate();
-		console.log("lastDay of month "+this.year+"-"+month+"==>"+daysInMonth);
+		elog("lastDay of month "+this.year+"-"+month+"==>"+daysInMonth);
 		return daysInMonth;
 	}
 	

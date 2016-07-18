@@ -1,6 +1,6 @@
 import electron = require("electron");
 import { Security } from './security';
-import { eLog } from './elog';
+import { elog } from './elog';
 import { Day } from './day';
 let ipcRenderer = electron.ipcRenderer;
 let fs = require("fs");
@@ -13,7 +13,7 @@ let cssNegativeColor = "RED";
 
 // Receive log messages from the main process, which cannot access the dev tools console directly.
 ipcRenderer.on("send-console", (event, arg) => {
-	console.log(arg);
+	elog(arg);
 });
 
 /**
@@ -23,7 +23,7 @@ ipcRenderer.on("send-console", (event, arg) => {
  */
 ipcRenderer.on("draw_symbol", (event, arg) => {
 	/** Load the security */
-	eLog(`loading security history for '${arg}'`);
+	elog(`loading security history for '${arg}'`);
 	var stock = new Security(arg);
 	stock.loadHistory("2016-01-14", "2016-02-26");
 
@@ -39,100 +39,30 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 	/** xScale is of type time */
 	var xScale = new Plottable.Scales.Time();
 	var xAxis = new Plottable.Axes.Time(xScale, "bottom");
-//	xAxis.formatter(Plottable.Formatters.multiTime());
+	xAxis.formatter(Plottable.Formatters.multiTime());
 	/** yScale is numeric/linear and formatted as currency */
 	var yScale = new Plottable.Scales.Linear();
 	var yAxis = new Plottable.Axes.Numeric(yScale, "left");
-	yAxis.formatter(Plottable.Formatters.currency());
-	var colorScale = new Plottable.Scales.Color();
+	//yAxis.formatter(Plottable.Formatters.currency());
+	//var colorScale = new Plottable.Scales.Color();
 
-	console.log(`creating graph with series1= ${arg}`)
+	elog(`creating graph with series1= ${arg}`)
 	//var series1 = new Plottable.Dataset(stock.history.getSeries(), { name: "series1" });
 
 	let dataset = new Plottable.Dataset(stock.history, { name: stock.symbol });
 
 //	var dayRangePlot = new Plottable.Plots.Segment()
 	var dayRangePlot = new Plottable.Plots.MarketBar()
-//		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
-//		.y(function (d) { return d.high; }, yScale)
-//		.x2(function (d) { return new Day(d.date).toDate(); }, xScale)
-//		.y2(function (d) { return d.low; }, yScale)
-//		.y3(function (d) { return d.open; }, yScale)
-//		.y4(function (d) { return d.close; }, yScale)
 		.attr("stroke-width", 1)
 		.attr("stroke", function(d) { return (d.open > d.close ? cssPositiveColor : cssNegativeColor)})
-//		.x(function (d) { return d.x; }, xScale)
-//		.y(function (d) { return d.y; }, yScale)
-//		.x2(function (d) { return d.x2; }, xScale)
-//		.y2(function (d) { return d.y2; }, yScale)
+		.x(function (d,index,dataset) { console.log(`from d.x(${d.x}=>`,d); return d.x; }, xScale)
+		.y(function (d,index,dataset) { console.log(`from d.y(${d.y}=>`,d); return d.y; }, yScale)
 //		.attr("stroke", function (d, i, dataset) { return dataset.metadata().name; }, colorScale)
 //		.addDataset(new Plottable.Dataset(stock.history.getSeries(), { name: stock.symbol }))
 		.addDataset(dataset)
+		.showAllData();
 //		.autorangeMode("y");
-/** 
 
-	// START OF SYMBOLS
-
-	var dayOpenPlot = new Plottable.Plots.Scatter()
-		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
-		.y(function (d) { return d.open; }, yScale)
-		.addDataset(dataset)
-
-	var dayClosePlot = new Plottable.Plots.Scatter()
-		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
-		.y(function (d) { return d.close; }, yScale)
-		.addDataset(dataset)
-
-	var symbolPlot = new Plottable.Plots.Scatter()
-		.addDataset(dataset)
-		.x(function (d) { return new Day(d.date).toDate(); }, xScale)
-		.y(function (d) { return d.close; }, yScale)
-		.size(9)
-		.symbol( function (d) { return Plottable.SymbolFactories.triangleUp() } )
-		.attr("fill","#ff0000");
-
-	// END OF SYMBOLS
-**/
-	
-/** 
-	var sparklineXScale = new Plottable.Scales.Time();
-	var sparklineXAxis = new Plottable.Axes.Time(sparklineXScale, "bottom");
-	var sparklineYScale = new Plottable.Scales.Linear();
-	var sparkline = new Plottable.Plots.Line();
-	sparkline.x(function (d) { return d.x; }, sparklineXScale).y(function (d) { return d.y; }, sparklineYScale);
-	sparkline.attr("stroke", function (d, i, dataset) { return dataset.metadata().name; }, colorScale);
-	sparkline.addDataset(series1);//.addDataset(series2);
-
-	var dragBox = new Plottable.Components.XDragBoxLayer();
-	dragBox.resizable(true);
-	dragBox.onDrag(function (bounds) {
-		var min = sparklineXScale.invert(bounds.topLeft.x);
-		var max = sparklineXScale.invert(bounds.bottomRight.x);
-		xScale.domain([min, max]);
-	});
-	dragBox.onDragEnd(function (bounds) {
-		if (bounds.topLeft.x === bounds.bottomRight.x) {
-			xScale.domain(sparklineXScale.domain());
-		}
-	});
-
-	xScale.onUpdate(function () {
-		dragBox.boxVisible(true);
-		var xDomain = xScale.domain();
-		dragBox.bounds({
-			topLeft: { x: sparklineXScale.scale(xDomain[0]), y: null },
-			bottomRight: { x: sparklineXScale.scale(xDomain[1]), y: null }
-		});
-	});
-	var miniChart = new Plottable.Components.Group([sparkline, dragBox]);
-
-	var pzi = new Plottable.Interactions.PanZoom(xScale, null);
-	pzi.attachTo(plot);
-
-	var output = d3.select("#hoverFeedback");
-	var outputDefaultText = "Closest:"
-	output.text(outputDefaultText);
-**/
 	//let plots = new Plottable.Components.Group([dayRangePlot, dayOpenPlot, dayClosePlot,symbolPlot]);
 	let plots = new Plottable.Components.Group([dayRangePlot]);
 	let chart = new Plottable.Components.Table([
@@ -144,6 +74,9 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 //	chart.rowWeight(2, 0.2);
 	/** render the chart to the SVG element */
 	chart.renderTo("svg#chartMain");
+
+console.log(`x.domain=${xScale.domain()},x.range=${xScale.range()},y.domain=${yScale.domain()},y.range=${yScale.range()}`)
+
 /** 
  * is this usable in node?
  * http://stackoverflow.com/questions/33141679/how-to-resize-chart-in-plottable-js

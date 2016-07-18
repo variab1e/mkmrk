@@ -37,7 +37,7 @@
   "dependencies": {
     "es6-promise": "^3.2.1",
     "isomorphic-fetch": "^2.2.1",
-    "plottable": "file:///Users/ehiller/Dev/godeps/src/github.com/erichiller/plottable",
+    "plottable": "file:../plottable",
     "source-map-support": "^0.4.1",
     "sql.js": "^0.3.2"
   }

@@ -1,5 +1,5 @@
 //import { DayRecord } from './dayRecord.ts';
-import { eLog } from './elog'
+import { elog } from './elog'
 
 enum Holiday {
 	"New Years" = 0,
@@ -22,10 +22,9 @@ export class DayArray extends Array<Day | DayRecord> {
 	 * @return {boolean} true if within the array, false if not
 	 */
 	includes(compareItem: Day | DayRecord): boolean {
-		console.log(this.length);
 		for (let i = 0; i < this.length; i++) {
 			/** bit of logging here */
-			console.log("comparing["+compareItem.year+"-"+compareItem.month+"-"+compareItem.day+
+			elog("comparing["+compareItem.year+"-"+compareItem.month+"-"+compareItem.day+
 				"|to|"+
 				this[i].year+"|to|"+this[i].month+"-"+this[i].day+"]");
 			if (compareItem.day == this[i].day &&
@@ -94,20 +93,20 @@ export class Day {
 			this.year = parseInt(year);
 			this.month = parseInt(month);
 			this.day = parseInt(day);
-			console.log(`day constructed from dateString => ${this.year}-${this.month}-${this.day}`);
+			elog(`day constructed from dateString => ${this.year}-${this.month}-${this.day}`);
 		} else if (typeof a == "object" && a instanceof Date) {
 			this.year = a.getFullYear();
 			this.month = a.getMonth()+1;
 			this.day = a.getDate();
-			console.log(`day constructed from date => ${this.year}-${this.month}-${this.day}`);
+			elog(`day constructed from date => ${this.year}-${this.month}-${this.day}`);
 		} else if (typeof a === 'number') {
 			// number[]
 			this.year = a;
 			this.month = b;
 			this.day = c;
-			console.log(`day constructed from year , month , day => ${this.year}-${this.month}-${this.day}`);
+			elog(`day constructed from year , month , day => ${this.year}-${this.month}-${this.day}`);
 		} else {
-			console.log("no value found to construct day->",a,b,c);
+			elog("no value found to construct day->",a,b,c);
 		}
 	}
 

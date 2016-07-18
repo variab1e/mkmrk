@@ -4,7 +4,7 @@ import sql 			= require('sql.js');
 import path 		= require('path');
 import { Day , DayArray , DayRecord } from './day';
 import { Year } from './year';
-import { eLog } from './elog'
+import { elog } from './elog'
 
 export class Security {
 
@@ -24,7 +24,7 @@ export class Security {
 		 */
 		private dbname: string = "data/f.db" 
 	) {
-		console.log("Security constructor for " + _symbol);
+		elog("Security constructor for " + _symbol);
 		this.dbpath = path.join(__dirname, ".." , this.dbname);
 		this.db = new sql.Database(fs.readFileSync(this.dbpath));
 		// date stored as ISO 8601
@@ -38,7 +38,7 @@ export class Security {
 			" `adj_close`	REAL, " +
 			" PRIMARY KEY(date) " +
 			"); ");
-		console.log("table created");
+		elog("table created");
 	}
 
 	
@@ -46,12 +46,12 @@ export class Security {
 		return this._symbol;
 	}
 	get history(): DayArray {
-		eLog("eLog->getHistory->",this._history);
+		elog("elog->getHistory->",this._history);
 		return this._history;
 	}
 	
 	writeSql(sqlstr: string) {
-		console.log("writeSql:"+sqlstr)
+		elog("writeSql:"+sqlstr)
 		this.db.run(sqlstr);
 		fs.writeFileSync(this.dbpath, new Buffer(this.db.export()));
 	}
@@ -62,7 +62,7 @@ export class Security {
 			this.db.each('SELECT * FROM '+this._symbol+' WHERE '+
 					'date>="'+dayStart.toString() +'" AND date<="'+dayEnd.toString()+'" ORDER BY date',
 										function(r){
-											console.log(r);
+											elog(r);
 											dayRecords.push(new DayRecord(
 												r.date,
 												r.open,
@@ -76,9 +76,9 @@ export class Security {
 								);
 			return dayRecords;
 		} catch (e) {
-			console.log("ERROR:" + e);
+			elog("ERROR:" + e);
 		}
-		console.log("historyFromSql ERROR - null being returned.")
+		elog("historyFromSql ERROR - null being returned.")
 		return null;
 	}
 	
@@ -105,7 +105,7 @@ export class Security {
 					"); ");
 			}
 		} catch (e) {
-			console.log("ERROR:" + e);
+			elog("ERROR:" + e);
 		}
 	}
 	
@@ -120,18 +120,18 @@ export class Security {
 				( m==12 ? ( d=1 , m=1 , y++ , holidays=new Year(y).getHoliDays() ) : ( d=1 , m++ ) ) 
 			)
 		){
-			console.log(`currently testing day ${y}-${m}-${d}`);
+			elog(`currently testing day ${y}-${m}-${d}`);
 			// day is the day currently being tested
 			day = new Day(y,m,d);
 			if (day.isWeekend()) {
 				/** it is a weekend */
-				console.log(`${y}-${m}-${d} is a weekend - not being added to expectedDays`);
+				elog(`${y}-${m}-${d} is a weekend - not being added to expectedDays`);
 				// dayRange is the an array of all days tested, add it here
 				this.dayRange.push(day);
 				continue;
 			} else if (holidays.includes(day)){
 				/** it is a holiday */
-				console.log(`${y}-${m}-${d} is a holiday - not being added to expectedDays`);
+				elog(`${y}-${m}-${d} is a holiday - not being added to expectedDays`);
 				this.dayRange.push(day);
 				continue;
 			} else {
@@ -140,7 +140,7 @@ export class Security {
 				// add it to the array of days we expect to find data for, as it is neither a weekend nor a holiday.
 				this.expectedDays.push(day);
 			}
-			console.log(`end of loop for day ${y}-${m}-${d}`);
+			elog(`end of loop for day ${y}-${m}-${d}`);
 		}
 	}
 	
@@ -151,13 +151,13 @@ export class Security {
 			for ( let i = 0 ; i < dayRecord.length ; i++ ){
 				/** return false if expectedDays ever does NOT include the dayRecocord */
 				if ( ! this.expectedDays.includes(dayRecord[i]) ) { return false } else {
-					console.log(dayRecord[i].toString() + " is expected");
+					elog(dayRecord[i].toString() + " is expected");
 				};
 			}
-			console.log("HistoryRange has been checked and matches for SQL")
+			elog("HistoryRange has been checked and matches for SQL")
 			return true;
 		} else {
-			console.log(`dayRecord.length of ${dayRecord.length} != this.expectedDays.length of ${this.expectedDays.length}`);
+			elog(`dayRecord.length of ${dayRecord.length} != this.expectedDays.length of ${this.expectedDays.length}`);
 		}
 		return false
 	}
@@ -168,10 +168,10 @@ export class Security {
 		let dayEnd = new Day(dayEndString);
 
 		this.createHistoryDayRange(dayStart,dayEnd);
-		console.log("getHistory(" + this._symbol + ")");
+		elog("getHistory(" + this._symbol + ")");
 		let json;
 		if ( filename ) {
-			console.log("Filename "+filename+" set, loading from file " + filename)
+			elog("Filename "+filename+" set, loading from file " + filename)
 			/** NOTE TO SELF: DIRECTORY SHOULD BE:: `../data/` */
 			//let json = JSON.parse(fs.readFileSync(path.join(__dirname, this._symbol+".json")).toString());
 			let json = JSON.parse(fs.readFileSync(filename).toString());
@@ -179,22 +179,22 @@ export class Security {
 			if ( this.checkHistoryRange(dayRecords) ){
 				this._history = dayRecords;
 				this.historySaveSql();
-				console.log("History loaded from file" + filename);
+				elog("History loaded from file" + filename);
 				return;
 			}
 		} else {
 			/** try to load from SQL database */
 			try {
-				console.log("try to load data from SQL")
+				elog("try to load data from SQL")
 				let dayRecords = this.historyFromSql(dayStart,dayEnd);
 				if ( this.checkHistoryRange(dayRecords) ){
 					this._history = dayRecords;
-					console.log("history loaded from SQL");
+					elog("history loaded from SQL");
 					/** successfully loaded from SQL - stop processing further sources */
 					return;
 				}
 			} catch (e) {
-				console.log("ERROR:" + e);
+				elog("ERROR:" + e);
 			}
 			/** all internal sources have failed, do a fresh external lookup */
 			let json = await this.query(
@@ -206,14 +206,14 @@ export class Security {
 			if ( this.checkHistoryRange(dayRecords) ){
 				this._history = dayRecords;
 				this.historySaveSql();
-				console.log("History loaded from file" + filename);
+				elog("History loaded from file" + filename);
 				return;
 			}
 		}
 	}
 	historyParseJson(json: any): DayArray {
 		
-		console.log("query results=" + json.query.results.quote.length);
+		elog("query results=" + json.query.results.quote.length);
 		let dayRecords: DayArray;
 		for (var i = 0; i < json.query.results.quote.length; i++) {
 			let d = json.query.results.quote[i];
@@ -242,10 +242,10 @@ export class Security {
 				)
 			)
 			let json = await response.json();
-			console.log("query(" + query + ") " + response.status + " " + response.statusText + " --to--> " + response.url);
+			elog("query(" + query + ") " + response.status + " " + response.statusText + " --to--> " + response.url);
 			return json;
 		} catch (err) {
-			console.log(err.message);
+			elog(err.message);
 		}
 	}
 
