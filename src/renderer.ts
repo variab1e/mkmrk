@@ -60,8 +60,8 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 //		.attr("stroke", function (d, i, dataset) { return dataset.metadata().name; }, colorScale)
 //		.addDataset(new Plottable.Dataset(stock.history.getSeries(), { name: stock.symbol }))
 		.addDataset(dataset)
-		.showAllData();
-//		.autorangeMode("y");
+//		.showAllData();
+		.autorangeMode("y");
 
 	//let plots = new Plottable.Components.Group([dayRangePlot, dayOpenPlot, dayClosePlot,symbolPlot]);
 	let plots = new Plottable.Components.Group([dayRangePlot]);
