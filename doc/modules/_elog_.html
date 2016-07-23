@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;year&quot; | mkmrk</title>
+	<title>&quot;elog&quot; | mkmrk</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_year_.html">&quot;year&quot;</a>
+					<a href="_elog_.html">&quot;elog&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;year&quot;</h1>
+			<h1>External module &quot;elog&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -72,12 +72,94 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Classes</h3>
+							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_year_.year.html" class="tsd-kind-icon">Year</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_elog_.html#elog" class="tsd-kind-icon">elog</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported"><a href="_elog_.html#log_level" class="tsd-kind-icon">LOG_<wbr>LEVEL</a></li>
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="elog" class="tsd-anchor"></a>
+					<h3>elog</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">elog<span class="tsd-signature-symbol">(</span>msg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, <span class="tsd-signature-symbol">...</span>dispVars<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/elog.ts#L18">elog.ts:18</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>elog - displays calling line number &amp; message &amp; dumps vars as pretty json string</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>msg: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>string to display in log message</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>dispVars: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>any number of variables (ellipsis , aka Rest parameters) to dump
+											<a href="https://github.com/evanw/node-source-map-support" class="external">usable by typescript node-source-map-support module</a>
+											<a href="https://github.com/mozilla/source-map/" class="external">Mozilla source-map library &amp; project</a>
+										<a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/" class="external">good introduction to sourcemaps</a></p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported">
+					<a name="log_level" class="tsd-anchor"></a>
+					<h3>LOG_<wbr>LEVEL</h3>
+					<div class="tsd-signature tsd-kind-icon">LOG_<wbr>LEVEL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/elog.ts#L5">elog.ts:5</a></li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="log_level.description" class="tsd-anchor"></a>
+						<h3>description</h3>
+						<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;off&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/elog.ts#L6">elog.ts:6</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal tsd-is-not-exported">
+						<a name="log_level.level" class="tsd-anchor"></a>
+						<h3>level</h3>
+						<div class="tsd-signature tsd-kind-icon">level<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/elog.ts#L7">elog.ts:7</a></li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 			</section>
 		</div>
@@ -90,7 +172,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="_day_.html">"day"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="_elog_.html">"elog"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -102,15 +184,18 @@
 					<li class=" tsd-kind-external-module">
 						<a href="_security_.html">"security"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="_year_.html">"year"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/_year_.year.html" class="tsd-kind-icon">Year</a>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_elog_.html#elog" class="tsd-kind-icon">elog</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="_elog_.html#log_level" class="tsd-kind-icon">LOG_<wbr>LEVEL</a>
 					</li>
 				</ul>
 			</nav>

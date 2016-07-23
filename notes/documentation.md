@@ -51,3 +51,18 @@ Is a parameter (input value) to a method or function.
 A variable in square brackets `[` and `]` signifies it is optional.
 
 If a parameter can have multiple types, enter them with a vertical pipe separating them `|` like this `@param {type1|type2} description`.
+
+# TypeDoc
+
+[TypeDoc](http://typedoc.io/guides/usage.html)
+
+## Usage
+
+From the project root `typedoc --options typedoc.json src`
+
+## Pattern Matching
+
+Uses [minimatch](https://github.com/isaacs/minimatch) - which is the same pattern matching as **node.js**
+
+[Source Code using minimatching](https://github.com/TypeStrong/typedoc/blob/53bb762ad208f2be266ece767f6204159ce71a0d/src/lib/application.ts#L253)
+

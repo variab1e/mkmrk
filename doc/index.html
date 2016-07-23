@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MkMrk</title>
+	<title>mkmrk</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -23,7 +23,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">MkMrk</a>
+					<a href="index.html" class="title">mkmrk</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -39,6 +39,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -55,7 +57,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> MkMrk</h1>
+			<h1> mkmrk</h1>
 		</div>
 	</div>
 </header>
@@ -64,7 +66,7 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="eh1-electron-starting">EH1 electron starting</h1>
-				<p><a href="https://github.com/variab1e/mkmrk">mkmrk github repo</a></p>
+				<p><a href="https://github.com/erichiller/mkmrk">mkmrk github repo</a></p>
 				<p><strong>from electron-quickstart</strong> This is a minimal Electron application based on the <a href="http://electron.atom.io/docs/latest/tutorial/quick-start">Quick Start Guide</a> within the Electron documentation.</p>
 				<p><strong>Use this app along with the <a href="http://electron.atom.io/#get-started">Electron API Demos</a> app for API code examples to help you get started.</strong></p>
 				<p>A basic Electron application needs just these files:</p>
@@ -74,8 +76,7 @@
 					<li><code>index.html</code> - A web page to render. This is the app&#39;s <strong>renderer process</strong>.</li>
 				</ul>
 				<p>You can learn more about each of these components within the <a href="http://electron.atom.io/docs/latest/tutorial/quick-start">Quick Start Guide</a>.</p>
-				<h2 id="to-use">To Use</h2>
-				<h3 id="eric-s-notes">Eric&#39;s Notes</h3>
+				<h2 id="to-use-eric-s-notes">To Use - Eric&#39;s Notes</h2>
 				<ul>
 					<li>see the typescript transpiler <code>tsc</code><ul>
 							<li><a href="https://www.typescriptlang.org/docs/tutorial.html">typescript docs</a></li>
@@ -83,6 +84,7 @@
 					</li>
 					<li>use build <code>scripts</code> in <code>package.json</code></li>
 					<li><a href="https://github.com/steve-perkins/MediaGallery/blob/master/renderer.ts">example of electron typescript application</a></li>
+					<li><strong>DO NOT INCLUDE THE EXTENSION ON IMPORT STATEMENTS</strong> ie. <code>import { Security } from &#39;./security&#39;;</code> NOT <code>import { Security } from &#39;./security.ts&#39;;</code></li>
 				</ul>
 				<p>To clone and run this repository you&#39;ll need <a href="https://git-scm.com">Git</a> and <a href="https://nodejs.org/en/download/">Node.js</a> (which comes with <a href="http://npmjs.com">npm</a>) installed on your computer. From your command line:</p>
 				<pre><code class="lang-bash"><span class="hljs-comment"># Clone this repository</span>
@@ -93,39 +95,6 @@ git <span class="hljs-built_in">clone</span> https://github.com/electron/electro
 npm install &amp;&amp; npm start
 </code></pre>
 				<p>Learn more about Electron and its API in the <a href="http://electron.atom.io/docs/latest">documentation</a>.</p>
-				<h1 id="typescript">Typescript</h1>
-				<p><a href="https://www.typescriptlang.org/docs/tutorial.html">handbook</a></p>
-				<h2 id="tsc-transpiler-">tsc (transpiler)</h2>
-				<p><a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">https://www.typescriptlang.org/docs/handbook/compiler-options.html</a></p>
-				<h2 id="tsconfig-json">tsconfig.json</h2>
-				<p><a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html">https://www.typescriptlang.org/docs/handbook/tsconfig-json.html</a></p>
-				<h2 id="typings">typings</h2>
-				<p><a href="https://github.com/typings/typings">typings overview</a></p>
-				<p><a href="https://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html">typings for npm packages</a></p>
-				<p><a href="https://github.com/typings/generator-typings">typings generator</a></p>
-				<ul>
-					<li><p><a href="https://github.com/typings/discussions/issues/15">file structure best practices</a></p>
-					</li>
-					<li><p><a href="https://github.com/typings/typings/blob/master/docs/faq.md#where-do-the-type-definitions-install">typings installation</a></p>
-					</li>
-				</ul>
-				<h1 id="sqlite3">SQLite3</h1>
-				<h2 id="fundamentals">Fundamentals</h2>
-				<p><a href="https://www.sqlite.org/datatype3.html">data types</a></p>
-				<ul>
-					<li>data types are <strong>NOT</strong> static, the column&#39;s data type is merely a suggestion</li>
-					<li></li>
-				</ul>
-				<h2 id="js-typescript-sql-libraries">js &amp; typescript sql libraries</h2>
-				<ul>
-					<li><a href="https://github.com/kripken/sql.js/">sql.js</a></li>
-					<li>sqlite ( aka <a href="https://github.com/kriasoft/node-sqlite">node-sqlite</a> )</li>
-					<li><a href="https://github.com/mapbox/node-sqlite3#installing">sqlite3</a><ul>
-							<li><a href="http://blog.modulus.io/nodejs-and-sqlite">node and sqlite3</a></li>
-							<li></li>
-						</ul>
-					</li>
-				</ul>
 				<h1 id="gui-frameworks">GUI frameworks</h1>
 				<ul>
 					<li>Angular2?</li>
@@ -134,39 +103,7 @@ npm install &amp;&amp; npm start
 				<h1 id="graphing">Graphing</h1>
 				<p><a href="http://plottablejs.org/examples/finance/">http://plottablejs.org/examples/finance/</a></p>
 				<p><a href="https://github.com/palantir/plottable/wiki/Using-Plottable-With-Typescript-1.5">https://github.com/palantir/plottable/wiki/Using-Plottable-With-Typescript-1.5</a></p>
-				<h1 id="queries">Queries</h1>
-				<p><a href="http://stackoverflow.com/questions/5108399/yahoo-finance-all-currencies-quote-api-documentation">Yahoo Finance API Question on StackOverflow</a></p>
-				<p><a href="https://github.com/lukaszbanasiak/yahoo-finance/blob/master/yahoo_finance/__init__.py">Project written using python</a></p>
-				<h2 id="further-reading-">Further Reading-</h2>
-				<p><a href="https://developer.yahoo.com/yql/console/?q=select%20*%20from%20csv%20where%20url%3D%27http%3A%2F%2Fdownload.finance.yahoo.com%2Fd%2Fquotes.csv%3Fs%3DYHOO%2CGOOG%2CAAPL%26f%3Dsl1d1t1c1ohgv%26e%3D.csv%27%20and%20columns%3D%27symbol%2Cprice%2Cdate%2Ctime%2Cchange%2Ccol1%2Chigh%2Clow%2Ccol2%27">https://developer.yahoo.com/yql/console/?q=select%20*%20from%20csv%20where%20url%3D%27http%3A%2F%2Fdownload.finance.yahoo.com%2Fd%2Fquotes.csv%3Fs%3DYHOO%2CGOOG%2CAAPL%26f%3Dsl1d1t1c1ohgv%26e%3D.csv%27%20and%20columns%3D%27symbol%2Cprice%2Cdate%2Ctime%2Cchange%2Ccol1%2Chigh%2Clow%2Ccol2%27</a></p>
-				<p><a href="http://www.yqlblog.net/blog/2009/06/02/getting-stock-information-with-yql-and-open-data-tables/">http://www.yqlblog.net/blog/2009/06/02/getting-stock-information-with-yql-and-open-data-tables/</a></p>
-				<pre><code>
-http:<span class="hljs-regexp">//query</span>.yahooapis.com/v1/public/yql?<span class="hljs-keyword">q</span>=<span class="hljs-keyword">select</span>%20*%20from%20yahoo.finance.quotes%20where%20symbol%20IN%20(%22YHOO%22,%22AAPL%22)&amp;<span class="hljs-keyword">format</span>=json&amp;env=http:<span class="hljs-regexp">//datatables</span>.org/alltables.env
-
-
-curl -v --data-urlencode <span class="hljs-keyword">format</span>=json \
---data-urlencode env=http:<span class="hljs-regexp">//datatables</span>.org/alltables.env \
---data-urlencode <span class="hljs-string">'q=Select * from yahoo.finance.quotes where symbol IN ("YHOO","AAPL")'</span> \
-http:<span class="hljs-regexp">//query</span>.yahooapis.com/v1/public/yql -o - | jq .
-
-curl -v <span class="hljs-string">"http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20IN%20(%22YHOO%22,%22AAPL%22)&amp;format=json&amp;env= http://datatables.org/alltables.env"</span> -o - | jq .
-
-****
-
-curl -v --data-urlencode <span class="hljs-keyword">format</span>=json \
---data-urlencode env=http:<span class="hljs-regexp">//datatables</span>.org/alltables.env \
---data-urlencode <span class="hljs-string">'q=Select * from yahoo.finance.historicaldata where startDate="2016-01-14" AND endDate="2016-01-15" AND symbol="YHOO"'</span> \
-http:<span class="hljs-regexp">//query</span>.yahooapis.com/v1/public/yql -o - | jq .
-
-****
-
-yahoo.finance.????
-----&gt;
- query = <span class="hljs-string">'select * from yahoo.finance.{table} where {key} = "{symbol}"'</span>.format(
-            symbol=self.symbol, table=table, key=key)
-https:<span class="hljs-regexp">//github</span>.com/lukaszbanasiak/yahoo-finance/blob/master/yahoo_finance/__init_<span class="hljs-number">_</span>.py
-<span class="hljs-comment">#line 85</span>
-</code></pre><h1 id="async-functions">Async Functions</h1>
+				<h1 id="async-functions">Async Functions</h1>
 				<p><em>awesome</em></p>
 				<p><a href="https://templecoding.com/blog/2016/02/17/async-await-with-es6-babel-and-typescript/">https://templecoding.com/blog/2016/02/17/async-await-with-es6-babel-and-typescript/</a></p>
 			</div>
@@ -176,6 +113,21 @@ https:<span class="hljs-regexp">//github</span>.com/lukaszbanasiak/yahoo-finance
 				<ul>
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_day_.html">"day"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_elog_.html">"elog"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_main_.html">"main"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_renderer_.html">"renderer"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_security_.html">"security"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_year_.html">"year"</a>

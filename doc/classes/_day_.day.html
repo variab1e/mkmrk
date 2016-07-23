@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Year | mkmrk</title>
+	<title>Day | mkmrk</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,13 +57,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_year_.html">&quot;year&quot;</a>
+					<a href="../modules/_day_.html">&quot;day&quot;</a>
 				</li>
 				<li>
-					<a href="_year_.year.html">Year</a>
+					<a href="_day_.day.html">Day</a>
 				</li>
 			</ul>
-			<h1>Class Year</h1>
+			<h1>Class Day</h1>
 		</div>
 	</div>
 </header>
@@ -73,20 +73,21 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Year is the holder for holidays and paramaters of a year</p>
+						<p>Purpose of this is to standardise on ISO-8601 format
+						<a href="http://xkcd.com/1179/" class="external">xkcd knows it</a></p>
 					</div>
-					<dl class="tsd-comment-tags">
-						<dt>param</dt>
-						<dd><p>four digit year</p>
-						</dd>
-					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Year</span>
+						<span class="target">Day</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="_day_.dayrecord.html" class="tsd-signature-type">DayRecord</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -97,25 +98,33 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_year_.year.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_day_.day.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_year_.year.html#year" class="tsd-kind-icon">year</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_day_.day.html#day" class="tsd-kind-icon">day</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_day_.day.html#holiday" class="tsd-kind-icon">holiday</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_day_.day.html#month" class="tsd-kind-icon">month</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_day_.day.html#year" class="tsd-kind-icon">year</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_day_.day.html#datestring" class="tsd-kind-icon">date<wbr>String</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_year_.year.html#getdayofweekoccurance" class="tsd-kind-icon">get<wbr>Day<wbr>OfWeek<wbr>Occurance</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_year_.year.html#getdaysinmonth" class="tsd-kind-icon">get<wbr>Days<wbr>InMonth</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_year_.year.html#geteaster" class="tsd-kind-icon">get<wbr>Easter</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_year_.year.html#getgoodfriday" class="tsd-kind-icon">get<wbr>Good<wbr>Friday</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_year_.year.html#getholidays" class="tsd-kind-icon">get<wbr>Holi<wbr>Days</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_year_.year.html#getmemorialday" class="tsd-kind-icon">get<wbr>Memorial<wbr>Day</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_year_.year.html#weekendnextmonday" class="tsd-kind-icon">weekend<wbr>Next<wbr>Monday</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_day_.day.html#gettime" class="tsd-kind-icon">get<wbr>Time</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_day_.day.html#isweekend" class="tsd-kind-icon">is<wbr>Weekend</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_day_.day.html#padday" class="tsd-kind-icon">pad<wbr>Day</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_day_.day.html#padmonth" class="tsd-kind-icon">pad<wbr>Month</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_day_.day.html#todate" class="tsd-kind-icon">to<wbr>Date</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_day_.day.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
 							</ul>
 						</section>
 					</div>
@@ -127,13 +136,15 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Year<span class="tsd-signature-symbol">(</span>year<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_year_.year.html" class="tsd-signature-type">Year</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Day<span class="tsd-signature-symbol">(</span>year<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, month<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, day<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_day_.day.html" class="tsd-signature-type">Day</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Day<span class="tsd-signature-symbol">(</span>date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_day_.day.html" class="tsd-signature-type">Day</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Day<span class="tsd-signature-symbol">(</span>date<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_day_.day.html" class="tsd-signature-type">Day</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/year.ts#L10">year.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L84">day.ts:84</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -141,223 +152,228 @@
 								<li>
 									<h5>year: <span class="tsd-signature-type">number</span></h5>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> month: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> day: <span class="tsd-signature-type">number</span></h5>
+								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_year_.year.html" class="tsd-signature-type">Year</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_day_.day.html" class="tsd-signature-type">Day</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L86">day.ts:86</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>date: <span class="tsd-signature-type">Date</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_day_.day.html" class="tsd-signature-type">Day</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L87">day.ts:87</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>date: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_day_.day.html" class="tsd-signature-type">Day</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="day" class="tsd-anchor"></a>
+					<h3>day</h3>
+					<div class="tsd-signature tsd-kind-icon">day<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L82">day.ts:82</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="holiday" class="tsd-anchor"></a>
+					<h3>holiday</h3>
+					<div class="tsd-signature tsd-kind-icon">holiday<span class="tsd-signature-symbol">:</span> <a href="../enums/_day_.holiday.html" class="tsd-signature-type">Holiday</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L84">day.ts:84</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="month" class="tsd-anchor"></a>
+					<h3>month</h3>
+					<div class="tsd-signature tsd-kind-icon">month<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L81">day.ts:81</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="year" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> year</h3>
+					<h3>year</h3>
 					<div class="tsd-signature tsd-kind-icon">year<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/year.ts#L13">year.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L80">day.ts:80</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="datestring" class="tsd-anchor"></a>
+					<h3>date<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> dateString<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L140">day.ts:140</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getdayofweekoccurance" class="tsd-anchor"></a>
-					<h3>get<wbr>Day<wbr>OfWeek<wbr>Occurance</h3>
+					<a name="gettime" class="tsd-anchor"></a>
+					<h3>get<wbr>Time</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Day<wbr>OfWeek<wbr>Occurance<span class="tsd-signature-symbol">(</span>month<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, dayOfWeek<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, occurance<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_day_.day.html" class="tsd-signature-type">Day</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Time<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/year.ts#L67">year.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L152">day.ts:152</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Find the Nth occurance of Day of the Week</p>
-								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>month: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>month of the year</p>
-									</div>
-								</li>
-								<li>
-									<h5>dayOfWeek: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>0 (Sunday) through 6 (Saturday)</p>
-									</div>
-								</li>
-								<li>
-									<h5>occurance: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the Nth occurance</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_day_.day.html" class="tsd-signature-type">Day</a></h4>
-							<p>return the Day object of this occurance</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getdaysinmonth" class="tsd-anchor"></a>
-					<h3>get<wbr>Days<wbr>InMonth</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Days<wbr>InMonth<span class="tsd-signature-symbol">(</span>month<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/year.ts#L135">year.ts:135</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Return the number of days in the supplied month
-									<a href="http://stackoverflow.com/questions/1184334/get-number-days-in-a-specified-month-using-javascript" class="external">this is the result of an answer posted on StackOverflow</a></p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>month: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>month of the year</p>
-									</div>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-							<p>daysInMonth - days in the month</p>
+							<p>returns the unixtimestamp (in seconds)</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="geteaster" class="tsd-anchor"></a>
-					<h3>get<wbr>Easter</h3>
+					<a name="isweekend" class="tsd-anchor"></a>
+					<h3>is<wbr>Weekend</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Easter<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_day_.day.html" class="tsd-signature-type">Day</a></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Weekend<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/year.ts#L159">year.ts:159</a></li>
+									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L128">day.ts:128</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the Day object for easter this year
-										Easter as it happens is the most complex holidy to calculate ever.
-										Uses Integer math, thus all of the floor() calcs, for more information see this
-									<a href="http://aa.usno.navy.mil/faq/docs/easter.php" class="external">incredibly useful navy article on calculating Easter&#39;s Date</a></p>
-								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_day_.day.html" class="tsd-signature-type">Day</a></h4>
-							<p>object containing the day of Easter</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<p>return true if this is a weekend day, else false</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getgoodfriday" class="tsd-anchor"></a>
-					<h3>get<wbr>Good<wbr>Friday</h3>
+					<a name="padday" class="tsd-anchor"></a>
+					<h3>pad<wbr>Day</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Good<wbr>Friday<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_day_.day.html" class="tsd-signature-type">Day</a></li>
+						<li class="tsd-signature tsd-kind-icon">pad<wbr>Day<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/year.ts#L145">year.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L122">day.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Good Friday is 2 days before Easter</p>
-								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_day_.day.html" class="tsd-signature-type">Day</a></h4>
-							<p>day object of Good Friday</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>returns the numeric day of the month as a string left-0 padded to two characters</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getholidays" class="tsd-anchor"></a>
-					<h3>get<wbr>Holi<wbr>Days</h3>
+					<a name="padmonth" class="tsd-anchor"></a>
+					<h3>pad<wbr>Month</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Holi<wbr>Days<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_day_.dayarray.html" class="tsd-signature-type">DayArray</a></li>
+						<li class="tsd-signature tsd-kind-icon">pad<wbr>Month<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/year.ts#L18">year.ts:18</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_day_.dayarray.html" class="tsd-signature-type">DayArray</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getmemorialday" class="tsd-anchor"></a>
-					<h3>get<wbr>Memorial<wbr>Day</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Memorial<wbr>Day<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_day_.day.html" class="tsd-signature-type">Day</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/year.ts#L47">year.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L116">day.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Memorial day is the LAST monday in the month of May
-									Start backwards from the last day of the month until you find a monday.</p>
-								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_day_.day.html" class="tsd-signature-type">Day</a></h4>
-							<p>Day object of Memorial day</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>returns the numberic month as a string left-0 padded to two characters</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="weekendnextmonday" class="tsd-anchor"></a>
-					<h3>weekend<wbr>Next<wbr>Monday</h3>
+					<a name="todate" class="tsd-anchor"></a>
+					<h3>to<wbr>Date</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">weekend<wbr>Next<wbr>Monday<span class="tsd-signature-symbol">(</span>day<span class="tsd-signature-symbol">: </span><a href="_day_.day.html" class="tsd-signature-type">Day</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_day_.day.html" class="tsd-signature-type">Day</a></li>
+						<li class="tsd-signature tsd-kind-icon">to<wbr>Date<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/year.ts#L96">year.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L145">day.ts:145</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>This will transform the day input into the next monday if the input day was on a weekend</p>
-								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>day: <a href="_day_.day.html" class="tsd-signature-type">Day</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>this is the day to check for a weekend</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_day_.day.html" class="tsd-signature-type">Day</a></h4>
-							<p>this is the transformed day, next monday, if it is transformed</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Date</span></h4>
+							<p>returns a native javascript Date object set to this</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="tostring" class="tsd-anchor"></a>
+					<h3>to<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/erichiller/mkmrk/blob/171979a/src/day.ts#L137">day.ts:137</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>returns this in string format <code>YYYY-MM-DD</code></p>
 						</li>
 					</ul>
 				</section>
@@ -369,7 +385,7 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_day_.html">"day"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -384,49 +400,67 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_security_.html">"security"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_year_.html">"year"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../enums/_day_.holiday.html" class="tsd-kind-icon">Holiday</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_year_.year.html" class="tsd-kind-icon">Year</a>
+						<a href="_day_.day.html" class="tsd-kind-icon">Day</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_year_.year.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_day_.day.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_year_.year.html#year" class="tsd-kind-icon">year</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_day_.day.html#day" class="tsd-kind-icon">day</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_year_.year.html#getdayofweekoccurance" class="tsd-kind-icon">get<wbr>Day<wbr>OfWeek<wbr>Occurance</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_day_.day.html#holiday" class="tsd-kind-icon">holiday</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_year_.year.html#getdaysinmonth" class="tsd-kind-icon">get<wbr>Days<wbr>InMonth</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_day_.day.html#month" class="tsd-kind-icon">month</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_year_.year.html#geteaster" class="tsd-kind-icon">get<wbr>Easter</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_day_.day.html#year" class="tsd-kind-icon">year</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_year_.year.html#getgoodfriday" class="tsd-kind-icon">get<wbr>Good<wbr>Friday</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_year_.year.html#getholidays" class="tsd-kind-icon">get<wbr>Holi<wbr>Days</a>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_day_.day.html#datestring" class="tsd-kind-icon">date<wbr>String</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_year_.year.html#getmemorialday" class="tsd-kind-icon">get<wbr>Memorial<wbr>Day</a>
+								<a href="_day_.day.html#gettime" class="tsd-kind-icon">get<wbr>Time</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_year_.year.html#weekendnextmonday" class="tsd-kind-icon">weekend<wbr>Next<wbr>Monday</a>
+								<a href="_day_.day.html#isweekend" class="tsd-kind-icon">is<wbr>Weekend</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_day_.day.html#padday" class="tsd-kind-icon">pad<wbr>Day</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_day_.day.html#padmonth" class="tsd-kind-icon">pad<wbr>Month</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_day_.day.html#todate" class="tsd-kind-icon">to<wbr>Date</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_day_.day.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_day_.dayarray.html" class="tsd-kind-icon">Day<wbr>Array</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_day_.dayrecord.html" class="tsd-kind-icon">Day<wbr>Record</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
