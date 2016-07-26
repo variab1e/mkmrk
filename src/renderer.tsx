@@ -2,6 +2,11 @@ import electron = require("electron");
 import { Security } from './security';
 import { elog } from './elog';
 import { Day } from './day';
+
+import * as React from 'react';
+import * as DOM from 'react-dom';
+import { UIlauncher , UIwindow } from './componentA';
+
 let ipcRenderer = electron.ipcRenderer;
 let fs = require("fs");
 let Plottable = require("Plottable");
@@ -28,10 +33,12 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 	stock.loadHistory("2016-01-14", "2016-02-26");
 	let dataset = new Plottable.Dataset(stock.history, { name: stock.symbol });
 
+	DOM.render(<UIlauncher />,UIwindow);
+
 	/** Create the SVG element and append to the DOM */
 	let chartMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 	chartMain.setAttribute("width", "100%");
-	chartMain.setAttribute("height", "800px");
+	chartMain.setAttribute("height", "400px");
 	//let svgNS = svg.namespaceURI;
 	chartMain.id = "chartMain";
 	document.body.appendChild(chartMain);

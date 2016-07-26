@@ -38,6 +38,9 @@
     "es6-promise": "^3.2.1",
     "isomorphic-fetch": "^2.2.1",
     "plottable": "file:../plottable",
+    "react": "^15.2.1",
+    "react-desktop": "^0.2.5",
+    "react-dom": "^15.2.1",
     "source-map-support": "^0.4.1",
     "sql.js": "^0.3.2"
   }

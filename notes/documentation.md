@@ -60,6 +60,29 @@ If a parameter can have multiple types, enter them with a vertical pipe separati
 
 From the project root `typedoc --options typedoc.json src`
 
+_where `src` is the directory relative to the project root containing the typescript source files, AND:_
+
+**`typedoc.json` is:**
+
+```json
+{
+  "module": "commonjs",
+  "target": "es6",
+  "moduleResolution": "node",
+
+  "emitDecoratorMetadata": "true",
+  "experimentalDecorators": "true",
+  "mode": "modules",
+  "out": "doc",
+  "theme": "default",
+  "ignoreCompilerErrors": "true",
+  "preserveConstEnums": "true",
+  "stripInternal": "true",
+  "suppressExcessPropertyErrors": "true",
+  "suppressImplicitAnyIndexErrors": "true"
+}
+```
+
 ## Pattern Matching
 
 Uses [minimatch](https://github.com/isaacs/minimatch) - which is the same pattern matching as **node.js**

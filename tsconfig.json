@@ -10,7 +10,8 @@
 		"noImplicitAny": false,
 		"noLib": false,
 		"outDir": "bin",
-		"allowUnreachableCode": true
+		"allowUnreachableCode": true,
+		"jsx": "react"
 	},
 	"exclude": [
 		"typings/browser.d.ts",

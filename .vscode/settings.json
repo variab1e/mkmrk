@@ -5,6 +5,7 @@
 		"**/.svn": true,
 		"**/.DS_Store": true,
 		"**/bin":false,
+		"bin/*.js*":true,
 		"**/typings": false,
 		"**/node_modules": false,
 		"**/.vscode": false,

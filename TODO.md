@@ -1,13 +1,5 @@
 # ToDo
 
-* docco -- ignore `node_modules`
-
-* typedoc!
-
-```bash
-typedoc --verbose --out doc
-```
-
 * [example of keyboard interactions](https://github.com/palantir/plottable/blob/e25ad631c27045d74abb4323959dd6af762812af/quicktests/overlaying/tests/realistic/symbols.js)
 
 **COLORSCALE** most likely a requirement for multi-datasource plot.
@@ -15,6 +7,9 @@ typedoc --verbose --out doc
 ## Create class of `graph`
 
 * macd() for example
+
+* cache lightweightentities on the plot
+
 
 ## `Config` class
 

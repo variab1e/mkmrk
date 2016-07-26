@@ -28,6 +28,16 @@ https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
 
 - [typings installation](https://github.com/typings/typings/blob/master/docs/faq.md#where-do-the-type-definitions-install)
 
+- [create typings - naming conventions](https://typescript.codeplex.com/wikipage?title=Writing%20Definition%20%28.d.ts%29%20Files)
+
+[DefinitelyTyped is a central typings repository](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/react)
+
+### Creating definition files (`*.d.ts`)
+
+- [Guide](https://typescript.codeplex.com/wikipage?title=Writing%20Definition%20%28.d.ts%29%20Files) 
+
+- [Best Practices](http://definitelytyped.org/guides/best-practices.html)
+
 ## Debug
 
 [How to debug Typescript in vscode](http://stackoverflow.com/questions/31169259/how-to-debug-typescript-files-in-visual-studio-code?rq=1)

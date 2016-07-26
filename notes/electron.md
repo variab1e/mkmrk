@@ -10,9 +10,9 @@ electron /home/user/my_awesome_app
 
 Also note that main property in `package.json` file indicates the entry point for your application. In your case it must be like this:
 
- ```javascript
+```javascript
  "main": "src/main.js"
- ```
+```
 
 ## Debug
 
