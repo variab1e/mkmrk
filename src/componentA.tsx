@@ -1,6 +1,6 @@
 //import ProgressCircle = require("react-desktop/windows");
 import * as React from 'react';
-import { Checkbox } from 'react-desktop/windows';
+//import { Checkbox } from 'react-desktop/windows';
 
 import { Menu } from './menu';
 
@@ -44,14 +44,12 @@ export class UIlauncher extends React.Component<any,any> {
   }
   render() {
     return (
-      React.createElement("div",null,"hello react"),
-      new checkster().render(),
-      new Menu().render()
+     <Menu></Menu>
     );
   }
 }
 
-
+/**
 export class checkster extends React.Component<any,any> {
   static defaultProps = {
     color: '#cc7f29',
@@ -69,6 +67,6 @@ export class checkster extends React.Component<any,any> {
     );
   }
 }
-
+**/
 document.title = 'React in Electron!';
 

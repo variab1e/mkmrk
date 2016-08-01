@@ -1,11 +1,13 @@
 {
   "globalDependencies": {
     "github-electron": "registry:dt/github-electron#1.0.2+20160523035412",
+    "isomorphic-fetch": "registry:dt/isomorphic-fetch#0.0.0+20160524142046",
     "node": "registry:dt/node#6.0.0+20160523035754",
     "react": "registry:dt/react#0.14.0+20160720060442",
     "sql.js": "registry:dt/sql.js#0.0.0+20160316155526"
   },
   "dependencies": {
+    "d3": "registry:npm/d3#3.0.0+20160723033700",
     "react-dom": "registry:npm/react-dom#15.0.1+20160705210405"
   }
 }

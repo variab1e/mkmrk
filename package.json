@@ -1,47 +1,52 @@
 {
-  "name": "mkmrk",
-  "version": "4548.2016.05.25.06.29.001",
-  "description": "Financial Analysis",
-  "main": "bin/main.js",
-  "scripts": {
-    "build": "tsc",
-    "prestart": "npm uninstall plottable; npm install plottable; npm run build",
-    "start": "electron bin/main.js",
-    "qdist-win32-x64": "npm run build && electron-packager . --out=dist --platform=win32 --arch=x64 --overwrite",
-    "qdist-all": "npm run build && electron-packager . --out=dist --platform=all --arch=all --overwrite",
-    "prepublish": "typings install && npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/erichiller/mkmrk"
-  },
-  "keywords": [
-    "mkmrk",
-    "finance"
-  ],
-  "author": "Eric D Hiller",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/erichiller/mkmrk/issues"
-  },
-  "homepage": "https://github.com/erichiller/mkmrk#readme",
-  "devDependencies": {
-    "electron-packager": "^7.0.2",
-    "electron-prebuilt": "^1.0.1",
-    "eslint": "^2.11.1",
-    "tslint": "^3.10.2",
-    "typedoc": "^0.4.1",
-    "typescript": "^1.8.10",
-    "typings": "^1.0.4"
-  },
-  "dependencies": {
-    "es6-promise": "^3.2.1",
-    "isomorphic-fetch": "^2.2.1",
-    "plottable": "file:../plottable",
-    "react": "^15.2.1",
-    "react-desktop": "^0.2.5",
-    "react-dom": "^15.2.1",
-    "source-map-support": "^0.4.1",
-    "sql.js": "^0.3.2"
-  }
+    "name": "mkmrk",
+    "version": "4548.2016.05.25.06.29.001",
+    "description": "Financial Analysis",
+    "main": "bin/main.js",
+    "scripts":
+    {
+        "build": "tsc",
+        "prestart": "npm uninstall plottable; npm install plottable; npm run build; ",
+        "start": "electron bin/main.js",
+        "qdist-win32-x64": "npm run build && electron-packager . --out=dist --platform=win32 --arch=x64 --overwrite",
+        "qdist-all": "npm run build && electron-packager . --out=dist --platform=all --arch=all --overwrite",
+        "prepublish": "typings install && npm run build"
+    },
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/erichiller/mkmrk"
+    },
+    "keywords": [
+        "mkmrk",
+        "finance"
+    ],
+    "author": "Eric D Hiller",
+    "license": "MIT",
+    "bugs":
+    {
+        "url": "https://github.com/erichiller/mkmrk/issues"
+    },
+    "homepage": "https://github.com/erichiller/mkmrk#readme",
+    "devDependencies":
+    {
+        "electron-packager": "^7.0.2",
+        "electron-prebuilt": "^1.0.1",
+        "eslint": "^2.11.1",
+        "tslint": "^3.10.2",
+        "typedoc": "^0.4.1",
+        "typescript": "^1.8.10",
+        "typings": "^1.0.4"
+    },
+    "dependencies":
+    {
+        "es6-promise": "^3.2.1",
+        "isomorphic-fetch": "^2.2.1",
+        "plottable": "file:../plottable",
+        "react": "^15.2.1",
+        "react-desktop": "^0.2.7",
+        "react-dom": "^15.2.1",
+        "source-map-support": "^0.4.1",
+        "sql.js": "^0.3.2"
+    }
 }

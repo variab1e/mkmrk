@@ -9,6 +9,7 @@
 ### General format
 
 Typical format for a `symbol` (any item to be notated upon) is:
+
 ```js
 /**
  * <description goes here>
@@ -59,6 +60,13 @@ If a parameter can have multiple types, enter them with a vertical pipe separati
 ## Usage
 
 From the project root `typedoc --options typedoc.json src`
+
+WORKING COMMAND TO GENERATE -- 2016-AUG-01 :
+
+```bash
+typedoc -tsconfig $var/mkmrk/tsconfig.json --readme $var/mkmrk/readme.md --name MkMrk  --out $var/mkmrk/doc/ $var/mkmrk/
+```
+
 
 _where `src` is the directory relative to the project root containing the typescript source files, AND:_
 

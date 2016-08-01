@@ -1,14 +1,17 @@
 // Place your settings in this file to overwrite default and user settings.
+
 {
-	"files.exclude": {
-		"**/.git": true,
-		"**/.svn": true,
-		"**/.DS_Store": true,
-		"**/bin":false,
-		"bin/*.js*":true,
-		"**/typings": false,
-		"**/node_modules": false,
-		"**/.vscode": false,
-		"**/typings.json": false
-	}
+    //"typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib",
+    "files.exclude":
+    {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.DS_Store": true,
+        "**/bin": false,
+        "bin/*.js*": true,
+        "**/typings": false,
+        "**/node_modules": false,
+        "**/.vscode": false,
+        "**/typings.json": false
+    }
 }

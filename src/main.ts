@@ -4,6 +4,14 @@ let dialog = electron.dialog;
 let BrowserWindow = electron.BrowserWindow;
 let Menu = electron.Menu;
 
+namespace CONFIG {
+  export let Debug:boolean = true;
+  export let DevTools = {
+    React: "/Users/ehiller/Library/Application Support/Google/Chrome/Profile 2/Extensions/fmkadmapgofadopljbjfkapdkoienihi/0.15.0_0/"
+  }
+  
+}
+
 // Global reference to the main window, so the garbage collector doesn't close it.
 let mainWindow: Electron.BrowserWindow;
 
@@ -46,7 +54,8 @@ function createWindow() {
   Menu.setApplicationMenu(menu);
 
   mainWindow.loadURL(`file://${__dirname}/index.html`);
-  mainWindow.webContents.openDevTools();
+  
+
 
   mainWindow.on("closed", () => {
     mainWindow = null;
@@ -56,6 +65,10 @@ function createWindow() {
 // Call 'createWindow()' on startup.
 app.on("ready", () => {
   createWindow();
+  if(CONFIG.Debug ) {
+    mainWindow.webContents.openDevTools();
+    BrowserWindow.addDevToolsExtension(CONFIG.DevTools.React);
+  }
   if (process.argv[1] != "main.js") {
     mainWindow.webContents.on("did-finish-load", () => {
       mainWindow.webContents.send("load-file", process.argv[1]);

@@ -51,9 +51,9 @@ export function elog(msg:string,...dispVars: any[]){
 	 * line_pos - line positional - from the last `:` to the end of the string
 	 */
 	let line_pos = caller_line.slice(caller_line.lastIndexOf(':')+1);
-	console.log(`elog called by ${filename_base} on line# ${line_no} @ char# ${line_pos} said:\n${msg}`);
+	//console.log(`elog called by ${filename_base} on line# ${line_no} @ char# ${line_pos} said:\n${msg}`);
 	// print out the input variables as pretty JSON strings
 	dispVars.forEach(value => {
-		console.log(JSON.stringify(value,null,2));
+		//console.log(JSON.stringify(value,null,2));
 	});
 }

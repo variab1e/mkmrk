@@ -1,20 +1,22 @@
 import * as React from 'react';
-import { NavPane, NavPaneItem, Text } from 'react-desktop/windows';
+import { Props , NavPane, NavPaneItem, Text } from 'react-desktop/windows';
 
-export class Menu extends React.Component<any, any> {
+interface MenuProps extends Props.basic {
+	selected?: string;
+}
+
+export class Menu extends React.Component<MenuProps, any> {
+
 	static defaultProps = {
 		color: '#cc7f29',
 		theme: 'light'
 	};
 
-	state: {
-		selected: string;
-	}
-
 	_isMounted: boolean = false;
 
 	constructor() {
 		super(Menu.defaultProps);
+		
 		this.state = {
 			selected: 'Item 1'
 		}
@@ -45,7 +47,11 @@ export class Menu extends React.Component<any, any> {
 				theme="light"
 				background="#ffffff"
 				selected={this.state.selected === title}
-				onSelect={ () => {if(this._isMounted){ this.setState({ selected: title }) }} }
+				//onChange={ e => this.props.handleChange(e) }
+				onSelect={() => {
+						console.log(this);
+						this.setState({ selected: title })
+					}}
 				padding="10px 20px"
 				push
 				>

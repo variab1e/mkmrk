@@ -1,42 +1,43 @@
 {
-	// See https://go.microsoft.com/fwlink/?LinkId=733558
-	// for the documentation about the tasks.json format
-	"version": "0.1.0",
-	"windows": {
-		"command": "C:/cmder/vendor/nodejs/npm"
-	},
-	"osx": {
-		"command": "npm"
-	},
-	"isShellCommand": true,
-	"showOutput": "always",
-	"suppressTaskName": true,
-	"tasks": [
-		{
-			"taskName": "install",
-			"args": ["install"]
-		},
-		{
-			"taskName": "update",
-			"args": ["update"]
-		},
-		{
-			// this will compile and run the source
-			"taskName": "start",
-			"isBuildCommand": true,
-			"args": ["start"],
-			// only show output upon problem matcher
-			"showOutput": "silent",
-			"problemMatcher": [
-                "$lessCompile",
-                "$tsc",
-                "$jshint"
-            ]
-		},
-		{
-			// this builds (compiles) the source
-			"taskName": "build",
-			"args": ["build"]
-		}
-	]
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "windows":
+    {
+        "command": "C:/cmder/vendor/nodejs/npm"
+    },
+    "osx":
+    {
+        "command": "npm"
+    },
+    "isShellCommand": true,
+    "showOutput": "always",
+    "suppressTaskName": true,
+    "tasks": [
+    {
+        "taskName": "install",
+        "args": [ "install" ]
+    },
+    {
+        "taskName": "update",
+        "args": [ "update" ]
+    },
+    {
+        // this will compile and run the source
+        "taskName": "start",
+        "isBuildCommand": true,
+        "args": [ "start" ],
+        // only show output upon problem matcher
+        "showOutput": "always",
+        "problemMatcher": [
+            "$lessCompile",
+            "$tsc",
+            "$jshint"
+        ]
+    },
+    {
+        // this builds (compiles) the source
+        "taskName": "build",
+        "args": [ "build" ]
+    } ]
 }
