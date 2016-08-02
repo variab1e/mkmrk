@@ -4,7 +4,7 @@ import sql 			= require('sql.js');
 import path 		= require('path');
 import { Day , DayArray , DayRecord } from './day';
 import { Year } from './year';
-import { elog } from './elog'
+import { elog } from '../lib/elog'
 
 export class Security {
 
@@ -22,7 +22,7 @@ export class Security {
 		 * `__dirname` references the directory that the file resides in
 		 * http://www.hacksparrow.com/understanding-directory-references-in-node-js.html
 		 */
-		private dbname: string = "data/f.db" 
+		private dbname: string = "../data/f.db" 
 	) {
 		elog("Security constructor for " + _symbol);
 		this.dbpath = path.join(__dirname, ".." , this.dbname);
@@ -200,31 +200,30 @@ export class Security {
 			let json = await this.query(
 				'Select * from yahoo.finance.historicaldata where ' +
 				'startDate="' + dayStart.toString() + '" ' +
-				'AND endDate="' + dayEnd.toString() + '"' +
+				'AND endDate="' + dayEnd.toString() + '" ' +
 				'AND symbol="' + this.symbol + '"');
 			let dayRecords = this.historyParseJson(json) ;
 			if ( this.checkHistoryRange(dayRecords) ){
 				this._history = dayRecords;
 				this.historySaveSql();
-				elog("History loaded from file" + filename);
+				elog("History saved to SQL");
 				return;
 			}
 		}
 	}
 	historyParseJson(json: any): DayArray {
-		
 		elog("query results=" + json.query.results.quote.length);
-		let dayRecords: DayArray;
+		let dayRecords: DayArray = new DayArray();
 		for (var i = 0; i < json.query.results.quote.length; i++) {
 			let d = json.query.results.quote[i];
 			dayRecords.push(new DayRecord(
-				d.date,
-				d.open,
-				d.high,
-				d.low,
-				d.close,
-				d.volume,
-				d.adj_close
+				d.Date,
+				d.Open,
+				d.High,
+				d.Low,
+				d.Close,
+				d.Volume,
+				d.Adj_Close
 			))			
 		}
 		return dayRecords;
@@ -237,7 +236,7 @@ export class Security {
 				"?" +
 				encodeURI(
 					"format=json" + "&" +
-					"env=http://datatables.org/alltables.env" + "&" + 'q=' +
+					"env=http://datatables.org/alltables.env" + "&" + "q=" +
 					query
 				)
 			)

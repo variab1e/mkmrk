@@ -1,5 +1,5 @@
 //import { DayRecord } from './dayRecord.ts';
-import { elog } from './elog'
+import { elog } from '../lib/elog'
 
 enum Holiday {
 	"New Years" = 0,
@@ -26,7 +26,7 @@ export class DayArray extends Array<Day | DayRecord> {
 			/** bit of logging here */
 			elog("comparing["+compareItem.year+"-"+compareItem.month+"-"+compareItem.day+
 				"|to|"+
-				this[i].year+"|to|"+this[i].month+"-"+this[i].day+"]");
+				this[i].year+"-"+this[i].month+"-"+this[i].day+"]");
 			if (compareItem.day == this[i].day &&
 				compareItem.month == this[i].month &&
 				compareItem.year == this[i].year

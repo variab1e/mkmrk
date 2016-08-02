@@ -1,7 +1,7 @@
 import electron = require("electron");
-import { Security } from './security';
-import { elog } from './elog';
-import { Day } from './day';
+import { Security } from './core/security';
+import { elog } from './lib/elog';
+import { Day } from './core/day';
 
 import * as React from 'react';
 import * as DOM from 'react-dom';
@@ -117,7 +117,7 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 	/** render the chart to the SVG element */
 	chart.renderTo("svg#chartMain");
 
-	console.log(`x.domain=${xScale.domain()},x.range=${xScale.range()},y.domain=${yScale.domain()},y.range=${yScale.range()}`)
+	elog(`x.domain=${xScale.domain()},x.range=${xScale.range()},y.domain=${yScale.domain()},y.range=${yScale.range()}`)
 
 	let crosshair = new Crosshair(dayRangePlot);
 	var pointer = new Plottable.Interactions.Pointer();

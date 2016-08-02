@@ -1,5 +1,5 @@
 import { Day , DayArray } from './day'
-import { elog } from './elog'
+import { elog } from '../lib/elog'
 
 
 

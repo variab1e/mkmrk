@@ -36,3 +36,23 @@ See [Debugging the main process](http://electron.atom.io/docs/tutorial/debugging
 ## API Docs
 
 <https://github.com/electron/electron/tree/master/docs/api>
+
+
+## BrowserWindow
+
+### Events
+
+* `page-title-updated` - returns _event_ - Emitted when the document changed its title, calling `event.preventDefault()` will prevent the native window's title from changing.
+* `close` - returns _event_ - Emitted when the window is going to be closed. It's emitted before the `beforeunload` and `unload` event of the DOM.
+	- Calling `event.preventDefault()` will cancel the close.
+
+
+#### Closing BrowserWindow order
+
+1. close
+2. beforeunload
+3. unload
+
+
+
+* 

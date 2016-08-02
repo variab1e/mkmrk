@@ -1,11 +1,7 @@
 require('source-map-support').install({
 	environment: 'node'
 });
-
-var LOG_LEVEL = {
-	description: "off",
-	level: 0
-}
+import { CONFIG } from '../config'
 
 /**
  * elog - displays calling line number & message & dumps vars as pretty json string
@@ -17,9 +13,9 @@ var LOG_LEVEL = {
  */
 export function elog(msg:string,...dispVars: any[]){
 	/**
-	 * Filter first
+	 * If DEBUG is not enabled, don't do anything
 	 */
-	if(!LOG_LEVEL.level){
+	if(CONFIG.Debug === false){
 		return;
 	}
 	/**
@@ -51,9 +47,19 @@ export function elog(msg:string,...dispVars: any[]){
 	 * line_pos - line positional - from the last `:` to the end of the string
 	 */
 	let line_pos = caller_line.slice(caller_line.lastIndexOf(':')+1);
-	//console.log(`elog called by ${filename_base} on line# ${line_no} @ char# ${line_pos} said:\n${msg}`);
+	/**
+	 * Filter - if Log.exclude string appears in msg do not continue.
+	 */
+	if(CONFIG.Log.exclude.length > 0){
+		for( let excludeMatchString of CONFIG.Log.exclude ){
+			if(typeof msg === "string" &&
+				msg.includes(excludeMatchString)){ return; }
+			if(caller_line.includes(excludeMatchString)){ return; }
+		}
+	}
+	console.log(`elog called by ${filename_base} on line# ${line_no} @ char# ${line_pos} said:\n${msg}`);
 	// print out the input variables as pretty JSON strings
 	dispVars.forEach(value => {
-		//console.log(JSON.stringify(value,null,2));
+		console.log(JSON.stringify(value,null,2));
 	});
 }
