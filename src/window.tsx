@@ -21,6 +21,11 @@ ipcRenderer.on("send-console", (event, arg) => {
 	elog(arg);
 });
 
+// Setup
+//ipcRenderer.on("init", { 
+	
+//})
+
 /**
  * Render the graph of the input stock ticker.
  * @param {string} event

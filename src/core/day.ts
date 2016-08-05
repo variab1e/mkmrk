@@ -81,7 +81,7 @@ export class Day {
 	month: number;
 	day: number;
 
-	holiday: Holiday;
+	private _holiday: Holiday;
 
 	constructor(year: number, month?: number, day?: number);
 	constructor(date: Date);

@@ -29,4 +29,49 @@
 * [Yeoman Tool to create skeletal framework for typing/definition framework and publish to repo/npm](https://github.com/typings/generator-typings)
 
 * How typings are resolved for npm packages, and how developers should list and create their [typings within their npm packages](https://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html)
-    - more discussion on the matter is in the [typings faq](https://github.com/typings/typings/blob/master/docs/faq.md#should-i-use-the-typings-field-in-packagejson)
+		- more discussion on the matter is in the [typings faq](https://github.com/typings/typings/blob/master/docs/faq.md#should-i-use-the-typings-field-in-packagejson)
+
+
+
+
+# Best Practices
+
+* Start from the Project's Documentation, not their Source if possible
+* Use _Namespaces_ for;
+		- variable types
+		- parameters
+* Callbacks - (_functions as parameters_) - When writing the function signatures for these types, do not mark those parameters as optional. The right way to think of this is “What parameters will be provided?”, not “What parameters will be consumed?”.
+* Extensible Declarations - using namespaces you can have a variable named the same in the current namespace, but with additional parameters...
+	- [Declarations Merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html) for more details
+	
+```typescript
+interface SomePoint { x: number; y: number; }
+declare var MyPoint: SomePoint;
+
+interface SomePoint { z: number; }
+MyPoint.z = 4; // OK
+```
+
+* xxx
+
+<https://www.typescriptlang.org/docs/handbook/writing-declaration-files.html>
+
+## Fenced code blocks inside ordered and unordered lists
+
+1. This is a numbered list.
+2. I'm going to include a fenced code block as part of this bullet:
+
+    ```
+    Code
+    More Code
+    ```
+
+3. We can put fenced code blocks inside nested bullets, too.
+   1. Like this:
+
+        ```c
+        printf("Hello, World!");
+        ```
+
+   2. The key is to indent your fenced block by **(4 * bullet_indent_level)** spaces.
+   3. Also need to put a separating newline above and below the fenced block.

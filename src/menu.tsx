@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Props , NavPane, NavPaneItem, Text } from 'react-desktop/windows';
 
-interface MenuProps extends Props.basic {
+export interface MenuProps extends Props.basic {
 	selected?: string;
 }
 

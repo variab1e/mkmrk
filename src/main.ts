@@ -19,11 +19,12 @@ function createWindow() {
     //  height: 600 ,
       center: false ,
       title: CONFIG.Title ,
+      //frame: false,  // causes no title bar on OSX
       icon: /** see https://github.com/electron/electron/blob/master/docs/api/native-image.md --> The window icon. On Windows it is recommended to use ICO icons to get best visual effects, you can also leave it undefined so the executable's icon will be used. **/ "",
       backgroundColor: /** String - Window's background color as Hexadecimal value, like #66CD00 or #FFF or #80FFFFFF (alpha is supported). Default is #FFF (white). **/ "#FFF",
       transparent: false
     });
-
+/**
   Menu.setApplicationMenu(
     Menu.buildFromTemplate([
     {
@@ -56,6 +57,7 @@ function createWindow() {
       ]
     }
   ]));
+  **/
 
   mainWindow.loadURL(`file://${__dirname}/index.html`);
   
@@ -68,9 +70,13 @@ function createWindow() {
 app.on("ready", () => {
   createWindow();
   if(CONFIG.Debug ) {
-    BrowserWindow.addDevToolsExtension(CONFIG.DevTools.React);
-    mainWindow.webContents.openDevTools();
+    if(!mainWindow.webContents.isDevToolsOpened()){
+      BrowserWindow.addDevToolsExtension(CONFIG.DevTools.React);
+      mainWindow.webContents.openDevTools();
+    }
   }
+  mainWindow.webContents.send("init");
+  /** Load non-main files */
   if (process.argv[1] != "main.js") {
     mainWindow.webContents.on("did-finish-load", () => {
       mainWindow.webContents.send("load-file", process.argv[1]);
@@ -82,7 +88,7 @@ app.on("ready", () => {
 // with Cmd + Q.
 app.on("window-all-closed", () => {
   //if (process.platform !== "darwin") {
-    app.quit()
+    app.quit();
   //}
 });
 
