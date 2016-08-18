@@ -8,7 +8,7 @@ export namespace CONFIG {
   };
   export let Log = {
     exclude: [
-      "window.js"
+     // "window.js"
     ]
   }
   

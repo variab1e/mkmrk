@@ -18,6 +18,8 @@ typings install dt~react-dom --save
 
 http://www.typescriptlang.org/docs/handbook/react-&-webpack.html
 
+[GitBook on React and TypeScript](https://www.gitbook.com/book/charleslbryant/hello-react-and-typescript/details)
+
 
 Enable in `tsconfig.json` by adding: `"jsx": "react"`
 

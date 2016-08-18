@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { Props , NavPane, NavPaneItem, Text } from 'react-desktop/windows';
+import { NavPane, NavPaneItem, Text } from 'react-desktop/windows';
 
-export interface MenuProps extends Props.basic {
+export interface MenuProps {
+	color?: string;
+	theme?: string;
 	selected?: string;
 }
 

@@ -69,12 +69,14 @@ function createWindow() {
 // Call 'createWindow()' on startup.
 app.on("ready", () => {
   createWindow();
+  console.log("!!!! MAIN #1");
   if(CONFIG.Debug ) {
     if(!mainWindow.webContents.isDevToolsOpened()){
       BrowserWindow.addDevToolsExtension(CONFIG.DevTools.React);
       mainWindow.webContents.openDevTools();
     }
   }
+  console.log("!!!! MAIN #2");
   mainWindow.webContents.send("init");
   /** Load non-main files */
   if (process.argv[1] != "main.js") {

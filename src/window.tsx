@@ -5,7 +5,7 @@ import { Day } from './core/day';
 
 import * as React from 'react';
 import * as DOM from 'react-dom';
-import { UIlauncher , UIwindow } from './componentA';
+import { UIlauncher , UIwindow } from './app/frame';
 
 let ipcRenderer = electron.ipcRenderer;
 let fs = require("fs");
@@ -22,9 +22,9 @@ ipcRenderer.on("send-console", (event, arg) => {
 });
 
 // Setup
-//ipcRenderer.on("init", { 
-	
-//})
+ipcRenderer.on("init", (event,arg) => {
+	DOM.render(<UIlauncher />,UIwindow);
+})
 
 /**
  * Render the graph of the input stock ticker.
@@ -38,7 +38,6 @@ ipcRenderer.on("draw_symbol", (event, arg) => {
 	stock.loadHistory("2016-01-14", "2016-02-26");
 	let dataset = new Plottable.Dataset(stock.history, { name: stock.symbol });
 
-	DOM.render(<UIlauncher />,UIwindow);
 
 	/** Create the SVG element and append to the DOM */
 	let chartMain = document.createElementNS("http://www.w3.org/2000/svg", "svg");
