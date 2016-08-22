@@ -42,3 +42,7 @@ https://github.com/lukaszbanasiak/yahoo-finance/blob/master/yahoo_finance/__init
 #line 85
 
 ```
+
+# News Sources
+
+* http://venturebeat.com
