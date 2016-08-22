@@ -15,16 +15,13 @@ let d3 = require("d3");
 let cssPositiveColor = "GREEN";
 let cssNegativeColor = "RED";
 
+// Upon startup
+DOM.render(<UIlauncher />,UIwindow);
 
 // Receive log messages from the main process, which cannot access the dev tools console directly.
 ipcRenderer.on("send-console", (event, arg) => {
 	elog(arg);
 });
-
-// Setup
-ipcRenderer.on("init", (event,arg) => {
-	DOM.render(<UIlauncher />,UIwindow);
-})
 
 /**
  * Render the graph of the input stock ticker.

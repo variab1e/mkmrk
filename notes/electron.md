@@ -53,6 +53,3 @@ See [Debugging the main process](http://electron.atom.io/docs/tutorial/debugging
 2. beforeunload
 3. unload
 
-
-
-* 

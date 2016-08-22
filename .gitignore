@@ -9,3 +9,4 @@ npm-debug.log
 bin/**/*.js
 bin/**/*.js.map
 .DS_Store
+typings

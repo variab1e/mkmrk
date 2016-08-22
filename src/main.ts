@@ -18,8 +18,8 @@ function createWindow() {
     //  width: 800 ,
     //  height: 600 ,
       center: false ,
-      title: CONFIG.Title ,
-      //frame: false,  // causes no title bar on OSX
+      //title: CONFIG.Title ,
+      frame: false,  // causes no title bar on OSX
       icon: /** see https://github.com/electron/electron/blob/master/docs/api/native-image.md --> The window icon. On Windows it is recommended to use ICO icons to get best visual effects, you can also leave it undefined so the executable's icon will be used. **/ "",
       backgroundColor: /** String - Window's background color as Hexadecimal value, like #66CD00 or #FFF or #80FFFFFF (alpha is supported). Default is #FFF (white). **/ "#FFF",
       transparent: false
@@ -72,7 +72,8 @@ app.on("ready", () => {
   console.log("!!!! MAIN #1");
   if(CONFIG.Debug ) {
     if(!mainWindow.webContents.isDevToolsOpened()){
-      BrowserWindow.addDevToolsExtension(CONFIG.DevTools.React);
+      // TODO :: SEE :: http://electron.atom.io/devtron/
+  //    BrowserWindow.addDevToolsExtension(CONFIG.DevTools.React);
       mainWindow.webContents.openDevTools();
     }
   }

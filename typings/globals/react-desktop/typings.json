@@ -1,7 +1,7 @@
 {
   "resolution": "main",
   "tree": {
-    "src": "/Users/ehiller/Dev/godeps/src/github.com/erichiller/typings-react-desktop/typings.json",
+    "src": "c:\\Users\\ehiller\\dev\\src\\github.com\\erichiller\\typings-react-desktop\\typings.json",
     "raw": "file:../typings-react-desktop/typings.json",
     "main": "index.d.ts",
     "files": [
@@ -23,7 +23,6 @@
       "src/window/windows/window.d.ts",
       "src/styleHelper.d.ts"
     ],
-    "global": false,
     "name": "react-desktop",
     "type": "typings"
   }

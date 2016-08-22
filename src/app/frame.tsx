@@ -26,7 +26,7 @@ class WindowFrame extends React.Component<any, void> {
 				padding="12px"
 				>
 				<TitleBar title="This is EDH Title #1" controls/>
-				//<Menu></Menu>
+				<Menu></Menu>
 				<Text color={this.props.theme === 'dark' ? 'white' : '#333'}>HELLO WORLD</Text>
 			</Window>
 		);
