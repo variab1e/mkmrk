@@ -11,8 +11,10 @@ let mainWindow: Electron.BrowserWindow;
 
 // Opens the main window, with a native menu bar.
 function createWindow() {
-  //mainWindow = new BrowserWindow({ width: 800, height: 600 });
-
+ 
+ /**
+  * @link https://github.com/electron/electron/blob/master/docs/api/frameless-window.md
+  */
   mainWindow = new BrowserWindow(
     { 
       width: 700 ,
