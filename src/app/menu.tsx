@@ -17,7 +17,7 @@ export class Menu extends React.Component<MenuProps, any> {
 	_isMounted: boolean = false;
 
 	constructor() {
-		super(Menu.defaultProps);
+		super();
 		
 		this.state = {
 			selected: 'Item 1'

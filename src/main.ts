@@ -15,15 +15,21 @@ function createWindow() {
 
   mainWindow = new BrowserWindow(
     { 
-    //  width: 800 ,
-    //  height: 600 ,
-      center: false ,
-      //title: CONFIG.Title ,
-      frame: false,  // causes no title bar on OSX
-      icon: /** see https://github.com/electron/electron/blob/master/docs/api/native-image.md --> The window icon. On Windows it is recommended to use ICO icons to get best visual effects, you can also leave it undefined so the executable's icon will be used. **/ "",
-      backgroundColor: /** String - Window's background color as Hexadecimal value, like #66CD00 or #FFF or #80FFFFFF (alpha is supported). Default is #FFF (white). **/ "#FFF",
+      width: 700 ,
+      height: 300 ,
+      frame: false,
       transparent: false
     });
+    /**
+      //center: false ,
+      //title: CONFIG.Title ,
+     *see https://github.com/electron/electron/blob/master/docs/api/native-image.md --> The window icon. On Windows it is recommended to use ICO icons to get best visual effects, you can also leave it undefined so the executable's icon will be used.
+     * causes no title bar on OSX
+      icon: "",
+       String - Window's background color as Hexadecimal value, like #66CD00 or #FFF or #80FFFFFF (alpha is supported). Default is #FFF (white)
+      backgroundColor: "#FFF",
+      transparent: false
+     */
 /**
   Menu.setApplicationMenu(
     Menu.buildFromTemplate([

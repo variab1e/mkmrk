@@ -5,7 +5,7 @@ import { Day } from './core/day';
 
 import * as React from 'react';
 import * as DOM from 'react-dom';
-import { UIlauncher , UIwindow } from './app/frame';
+import { UIlauncher , UIwindow } from './app/window';
 
 let ipcRenderer = electron.ipcRenderer;
 let fs = require("fs");
