@@ -81,7 +81,7 @@ app.on("ready", () => {
   if(CONFIG.Debug ) {
     if(!mainWindow.webContents.isDevToolsOpened()){
       // TODO :: SEE :: http://electron.atom.io/devtron/
-  //    BrowserWindow.addDevToolsExtension(CONFIG.DevTools.React);
+      BrowserWindow.addDevToolsExtension(CONFIG.DevTools.React);
       mainWindow.webContents.openDevTools();
     }
   }

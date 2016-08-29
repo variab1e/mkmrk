@@ -4,11 +4,17 @@
 
 **COLORSCALE** most likely a requirement for multi-datasource plot.
 
-## Create class of `graph`
+## Create class of `indicator`
 
-* macd() for example
+### MACD (Moving Average Convergence/Divergence)
 
-* cache lightweightentities on the plot
+<https://www.tradingview.com/stock-charts-support/index.php/MACD_(Moving_Average_Convergence/Divergence)>
+
+<https://en.wikipedia.org/wiki/MACD>
+
+<http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:moving_average_convergence_divergence_macd>
+
+* cache `lightweightentities` on the plot
 
 
 ## `Config` class

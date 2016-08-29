@@ -45,4 +45,4 @@ https://github.com/lukaszbanasiak/yahoo-finance/blob/master/yahoo_finance/__init
 
 # News Sources
 
-* http://venturebeat.com
+

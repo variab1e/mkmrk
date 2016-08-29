@@ -13,10 +13,12 @@
         "outDir": "bin",
         "allowUnreachableCode": true,
         "jsx": "react",
+        "forceConsistentCasingInFileNames": true,
 
         "listFiles": true,
         "pretty": true,
-        "version": true
+        "version": true,
+        "diagnostics": true
 
 
     },
@@ -29,3 +31,8 @@
         "data"
     ]
 }
+// http://www.typescriptlang.org/docs/handbook/compiler-options.html
+// for producttion remove the last group, and add
+// * "removeComments": true,
+
+// try `--watch` mode
