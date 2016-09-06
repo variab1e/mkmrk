@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Window, TitleBar, Text } from 'react-desktop/windows';
 import { Menu } from './menu';
-import { CONFIG } from '../CONFIG';
+import { CONFIG } from '../config';
 
 import { elog } from '../lib/elog';
 
 import electron = require("electron");
-let remote = electron.dialog;
-let BrowserWindow = electron.BrowserWindow;
+let remote = electron.remote;
+//let BrowserWindow = remote.require('BrowserWindow'); 
 
 export const UIwindow = document.getElementsByTagName("app")[0];
 
@@ -23,19 +23,35 @@ class WindowFrame extends React.Component<any, any> {
 		isMaximized: false
 	}
 
+	constructor() {
+		super();
+	}
+
 	close(){
 		elog('close window');
-		let window = BrowserWindow.getFocusedWindow();
+		let window = remote.BrowserWindow.getFocusedWindow();
 		window.close();
 
 	}
 
 	minimize(){
 		elog('minimize window');
+		let window = remote.BrowserWindow.getFocusedWindow();
 		window.minimize();
 	}
 
-	toggleMaximize(){ elog('maximize window'); this.setState({ isMaximized: !this.state.isMaximized })}
+	maximize(){
+		elog('minimize window');
+		let window = remote.BrowserWindow.getFocusedWindow();
+		window.maximize();
+	}
+
+	toggleMaximize(){
+		elog('maximize window');
+		this.setState({ isMaximized: !this.state.isMaximized });
+		elog(`${this.state.isMaximized}`)
+	}
+
 /**
  * Setting 
  * 	height
@@ -54,7 +70,7 @@ class WindowFrame extends React.Component<any, any> {
 				padding="12px"
 				>
 				<TitleBar
-					title="My Windows Application"
+					title={CONFIG.Title}
 					controls
 					isMaximized={this.state.isMaximized}
 					theme={this.props.theme}

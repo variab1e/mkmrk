@@ -8,6 +8,7 @@ import { CONFIG } from './config'
 
 // Global reference to the main window, so the garbage collector doesn't close it.
 let mainWindow: Electron.BrowserWindow;
+let ipcMain = electron.ipcMain;
 
 // Opens the main window, with a native menu bar.
 function createWindow() {
@@ -74,18 +75,29 @@ function createWindow() {
   });
 }
 
+/**
+ * @link http://electron.atom.io/docs/api/ipc-main/
+ */
+ipcMain.on("log", (origin,message) => {
+  console.log(message);
+});
+ipcMain.on('uncaughtException', (origin,arg) => {
+  console.log(arg);
+});
+
 // Call 'createWindow()' on startup.
 app.on("ready", () => {
   createWindow();
   console.log("!!!! MAIN #1");
-  if(CONFIG.Debug ) {
+  if( CONFIG.Debug ) {
     if(!mainWindow.webContents.isDevToolsOpened()){
       // TODO :: SEE :: http://electron.atom.io/devtron/
-      BrowserWindow.addDevToolsExtension(CONFIG.DevTools.React);
+      //BrowserWindow.addDevToolsExtension(CONFIG.DevTools.React);
+      
       mainWindow.webContents.openDevTools();
     }
   }
-  console.log("!!!! MAIN #2");
+  
   mainWindow.webContents.send("init");
   /** Load non-main files */
   if (process.argv[1] != "main.js") {
@@ -93,6 +105,13 @@ app.on("ready", () => {
       mainWindow.webContents.send("load-file", process.argv[1]);
     });
   }
+
+  mainWindow.webContents.on('crashed', (origin,arg) => {
+      console.log(arg);
+    });
+  mainWindow.on('unresponsive', (origin,arg) => {
+      console.log(arg);
+    });
 });
 
 // On OS X it is common for applications and their menu bar to stay active until the user quits explicitly

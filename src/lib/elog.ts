@@ -1,7 +1,10 @@
+import electron = require("electron");
 require('source-map-support').install({
 	environment: 'node'
 });
 import { CONFIG } from '../config'
+
+let ipcRenderer = electron.ipcRenderer;
 
 /**
  * elog - displays calling line number & message & dumps vars as pretty json string
@@ -57,7 +60,9 @@ export function elog(msg:string,...dispVars: any[]){
 			if(caller_line.includes(excludeMatchString)){ return; }
 		}
 	}
-	console.log(`elog called by ${filename_base} on line# ${line_no} @ char# ${line_pos} said:\n${msg}`);
+	let logMsg = `elog called by ${filename_base} on line# ${line_no} @ char# ${line_pos} said:\n${msg}`;
+	console.log(logMsg);
+	ipcRenderer.send('log',logMsg);
 	// print out the input variables as pretty JSON strings
 	dispVars.forEach(value => {
 		console.log(JSON.stringify(value,null,2));

@@ -7,8 +7,8 @@
         "**/.git": true,
         "**/.svn": true,
         "**/.DS_Store": true,
-        "**/bin": false,
-        "**/bin/**/**.js*": true,
+      //  "**/bin": false,
+        //"**/bin/**/**.js*": true,
         "**/typings.json": false
     },
     "eslint.enable": false
