@@ -4,12 +4,12 @@
   "description": "Financial Analysis",
   "main": "bin/main.js",
   "scripts": {
-    "build": "tsc && copy src\\index.html bin\\index.html",
+    "build": "tsc && copyfiles -f ./src/index.html bin",
     "prestart": "npm uninstall plottable && npm install plottable && npm run build",
     "start": "electron bin/main.js",
     "qdist-win32-x64": "npm run build && electron-packager . --out=dist --platform=win32 --arch=x64 --overwrite",
     "qdist-all": "npm run build && electron-packager . --out=dist --platform=all --arch=all --overwrite",
-    "prepublish": "typings install && npm run build"
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -26,14 +26,22 @@
   },
   "homepage": "https://github.com/erichiller/mkmrk#readme",
   "devDependencies": {
-    "electron-packager": "^7.0.2",
-    "electron-prebuilt": "^1.0.1",
+    "@types/d3": "^3.5.36",
+    "@types/electron": "^1.4.24",
+    "@types/isomorphic-fetch": "0.0.31",
+    "@types/react": "^0.14.41",
+    "@types/react-dom": "^0.14.18",
+    "@types/sql.js": "0.0.28",
+    "copyfiles": "^1.0.0",
+    "devtron": "~1.3.0",
+    "electron": "^1.3.1",
+    "electron-packager": "^8.0.0",
     "eslint": "^2.11.1",
+    "react-desktop.d": "file:///Users/ehiller/Dev/godeps/src/github.com/erichiller/react-desktop.d",
+    "source-map-support": "^0.4.1",
     "tslint": "^3.10.2",
     "typedoc": "^0.4.1",
-    "typescript": "^1.8.10",
-    "typings": "^1.0.4",
-    "devtron": "~1.3.0"
+    "typescript": "^2.0.0"
   },
   "dependencies": {
     "es6-promise": "^3.2.1",
@@ -42,7 +50,6 @@
     "react": "^15.2.1",
     "react-desktop": "^0.2.7",
     "react-dom": "^15.2.1",
-    "source-map-support": "^0.4.1",
     "sql.js": "^0.3.2"
   }
 }

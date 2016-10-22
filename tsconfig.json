@@ -18,15 +18,17 @@
         "listFiles": true,
         "pretty": true,
         "version": true,
-        "diagnostics": true
+        "diagnostics": true,
 
-
+        "types": [
+            "react-desktop.d"
+        ]
     },
+    "include": [
+        "node_modules/react-desktop.d"
+    ],
     "exclude": [
-        "typings/browser.d.ts",
-        "typings/browser",
         "node_modules",
-        "typings/custom",
         "doc",
         "data"
     ]

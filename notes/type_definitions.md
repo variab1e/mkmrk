@@ -1,23 +1,54 @@
 # Typings
 
+[Master Documentation](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html)
 
-## Typings software overview and usage
+## @types
 
-Typings is software to install definitions for javascript packages that were not written in typescript, and therefor do not have typings.
+_**As of typescript 2.0 - typings is deprecated. You can read about it [here](https://blogs.msdn.microsoft.com/typescript/2016/06/15/the-future-of-declaration-files/)**_
 
-[typings overview](https://github.com/typings/typings)
+Now `npm` is used with the search format `npm install --save-dev @types/<package>` where `package` is the name of the package which you need definitions for. The definitions are installed into `node_modules/@types/<package>`. For more information, see the [typescript documentation].(https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html)
 
-[typings discussions on use and implementations](https://github.com/typings/discussions/issues?utf8=%E2%9C%93&q=is%3Aissue)
+_NOTE: `typings.json` and the `typings/` folder are no longer required._  
 
-[typings installation](https://github.com/typings/typings/blob/master/docs/faq.md#where-do-the-type-definitions-install)
+Search can be done here <https://www.npmjs.com/search?q=> for packages. OR <http://microsoft.github.io/TypeSearch/>  
 
-[typings Command line usage](https://github.com/typings/typings/blob/master/docs/commands.md)
+### Creating @types
 
+To define, an _@types_ package, In the `package.json`:
+
+```json
+{
+  "devDependencies": {
+    "@types/react-dom": "^0.14.18"
+  },
+  "types": "index.d.ts",
+}
+```
+
+### Using definitions from a local file in `tsconfig.json` (rather than `@types`)
+
+_For example if the types for the project react-desktop is 
+Install using `npm install --save-dev file:../react-desktop.d/`
+
+Add the `types` array to the project's `tsconfig.json`
+
+```json
+{
+    "compilerOptions":
+    {
+        "types": [
+            "react-desktop.d"
+        ]
+    },
+    "include": [
+        "node_modules/react-desktop.d"
+    ],
+}
+```
 
 ## Repositories
 
 [DefinitelyTyped is a central typings repository](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/react)
-
 
 ## Creating definition files (`*.d.ts`)
 
@@ -47,32 +78,11 @@ Typings is software to install definitions for javascript packages that were not
 
 * [The Typings FAQ](https://github.com/typings/typings/blob/master/docs/faq.md#writing-typings-definitions) offers some information as well on how to properly create definitions
 
-
-
-
 ### Closure Compiler can create Typings from JSDoc
 
 [Closure-ts](https://github.com/teppeis/closure-ts/blob/master/README.md)
 
 [JSDoc Tags for Closure](https://developers.google.com/closure/compiler/docs/js-for-compiler)
-
-
-## Building / '_Bundling_` typings 
-
-`typings bundle --out <FILENAME-FOR-OUTPUT>`
-
-The completed, **ready to use** typings are now in <FILENAME-FOR-OUTPUT>'
-
-
-## How to publish typings
-
-* [Yeoman Tool to create skeletal framework for typing/definition framework and publish to repo/npm](https://github.com/typings/generator-typings)
-
-* How typings are resolved for npm packages, and how developers should list and create their [typings within their npm packages](https://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html)
-		- more discussion on the matter is in the [typings faq](https://github.com/typings/typings/blob/master/docs/faq.md#should-i-use-the-typings-field-in-packagejson)
-
-
-
 
 ## Best Practices
 
@@ -133,6 +143,32 @@ Can also put a catch-all `declare module '*';` statement into the file and impor
 [typings for expect](https://github.com/andrew-w-ross/typings-expect/blob/master/expect.d.ts)
 
 
+# Typings software overview and usage (deprecated)
+
+Typings is software to install definitions for javascript packages that were not written in typescript, and therefor do not have typings.
+
+[typings overview](https://github.com/typings/typings)
+
+[typings discussions on use and implementations](https://github.com/typings/discussions/issues?utf8=%E2%9C%93&q=is%3Aissue)
+
+[typings installation](https://github.com/typings/typings/blob/master/docs/faq.md#where-do-the-type-definitions-install)
+
+[typings Command line usage](https://github.com/typings/typings/blob/master/docs/commands.md)
+
+## Building / '_Bundling_` typings 
+
+`typings bundle --out <FILENAME-FOR-OUTPUT>`
+
+The completed, **ready to use** typings are now in <FILENAME-FOR-OUTPUT>'
+
+## How to publish typings
+
+* [Yeoman Tool to create skeletal framework for typing/definition framework and publish to repo/npm](https://github.com/typings/generator-typings)
+
+* How typings are resolved for npm packages, and how developers should list and create their [typings within their npm packages](https://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html)
+		- more discussion on the matter is in the [typings faq](https://github.com/typings/typings/blob/master/docs/faq.md#should-i-use-the-typings-field-in-packagejson)
+
+
 
 ----
 # TESTING MARKDOWN IN VSCODE
@@ -151,7 +187,6 @@ Can also put a catch-all `declare module '*';` statement into the file and impor
 
 3. We can put fenced code blocks inside nested bullets, too.
    1. Like this:
-
         ```c
         printf("Hello, World!");
         ```
