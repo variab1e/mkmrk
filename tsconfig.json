@@ -1,3 +1,4 @@
+// tsconfig official documentation --> https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
 {
     "compilerOptions":
     {
@@ -25,7 +26,8 @@
         ]
     },
     "include": [
-        "node_modules/react-desktop.d"
+        "node_modules/react-desktop.d",
+        "**/*"
     ],
     "exclude": [
         "node_modules",

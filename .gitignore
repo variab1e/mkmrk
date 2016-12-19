@@ -8,6 +8,5 @@ node_modules
 npm-debug.log
 bin
 .DS_Store
-typings
 thumbs.db
 desktop.ini

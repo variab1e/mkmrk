@@ -8,7 +8,12 @@
     "npm",
     "Namespaces",
     "Callbacks",
-    "namespaces"
+    "namespaces",
+    "BrowserWindow",
+    "Renderer",
+    "sandboxed",
+    "renderer",
+    "vscode"
   ],
   "mistakeTypeToStatus": {
     "Passive voice": "Hint",
@@ -30,6 +35,7 @@
   ],
   "ignoreRegExp": [
     "/\\(.*\\.(jpg|jpeg|png|md|gif|JPG|JPEG|PNG|MD|GIF)\\)/g",
-    "/((http|https|ftp|git)\\S*)/g"
+    "/((http|https|ftp|git)\\S*)/g",
+    "/((`{1,3})([^`]+?)\\\\2)/gm"
   ]
 }

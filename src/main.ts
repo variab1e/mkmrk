@@ -21,14 +21,12 @@ function createWindow() {
       width: 700 ,
       height: 300 ,
       frame: false,
-      transparent: false
+      transparent: false,
+      icon: "assets/neilsred.ico",
+      title: CONFIG.Title
     });
     /**
       //center: false ,
-      //title: CONFIG.Title ,
-     *see https://github.com/electron/electron/blob/master/docs/api/native-image.md --> The window icon. On Windows it is recommended to use ICO icons to get best visual effects, you can also leave it undefined so the executable's icon will be used.
-     * causes no title bar on OSX
-      icon: "",
        String - Window's background color as Hexadecimal value, like #66CD00 or #FFF or #80FFFFFF (alpha is supported). Default is #FFF (white)
       backgroundColor: "#FFF",
       transparent: false
@@ -92,7 +90,10 @@ app.on("ready", () => {
   if( CONFIG.Debug ) {
     if(!mainWindow.webContents.isDevToolsOpened()){
       // TODO :: SEE :: http://electron.atom.io/devtron/
-      //BrowserWindow.addDevToolsExtension(CONFIG.DevTools.React);
+      if ( BrowserWindow.getDevToolsExtensions().hasOwnProperty('devtron') ){
+        
+      }
+      BrowserWindow.addDevToolsExtension(CONFIG.DevTools.React);
       
       mainWindow.webContents.openDevTools();
     }

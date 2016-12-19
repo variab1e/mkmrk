@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { NavPane, NavPaneItem, Text } from 'react-desktop/windows';
 
+import { SecurityChart } from './security_chart';
+
 export interface MenuProps {
 	color?: string;
 	theme?: string;
@@ -24,6 +26,10 @@ export class Menu extends React.Component<MenuProps, any> {
 		}
 	}
 
+	/**
+	 * componentDidMount fires when this component is loaded by React and ready for use
+	 * It will fire once only
+	 */
 	componentDidMount() {
 		this._isMounted = true;
 	}
@@ -35,7 +41,7 @@ export class Menu extends React.Component<MenuProps, any> {
 		return (
 			<NavPane openLength={200} push color={this.props.color} theme={this.props.theme}>
 				{this.renderItem('Item 1', 'Content 1') }
-				{this.renderItem('Item 2', 'Content 2') }
+				{this.renderItem('Item 2', <SecurityChart />) }
 				{this.renderItem('Item 3', 'Content 3') }
 			</NavPane>
 		);

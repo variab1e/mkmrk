@@ -27,8 +27,6 @@ See [Debugging the main process](http://electron.atom.io/docs/tutorial/debugging
 [stack-trace - node specific package](https://www.npmjs.com/package/stack-trace)
 
 
-
-
 ## Chrome (Renderer) Command Line switches
 
 <https://github.com/electron/electron/blob/master/docs/api/chrome-command-line-switches.md>
@@ -46,10 +44,12 @@ See [Debugging the main process](http://electron.atom.io/docs/tutorial/debugging
 * `close` - returns _event_ - Emitted when the window is going to be closed. It's emitted before the `beforeunload` and `unload` event of the DOM.
 	- Calling `event.preventDefault()` will cancel the close.
 
+[BrowserWindow Documentation]: http://electron.atom.io/docs/api/browser-window/
 
 #### Closing BrowserWindow order
 
 1. close
-2. beforeunload
+2. `beforeunload`
 3. unload
+
 
